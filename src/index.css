@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Nishith Desai inspired design system */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%; /* #ffffff */
+    --foreground: 0 0% 0%; /* #000000 */
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+
+    /* Blue from logo - #1c4897 */
+    --primary: 218 68% 35%; /* #1c4897 */
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 218 68% 45%;
+    --primary-dark: 218 68% 25%;
+
+    /* Dark blue for sidebar */
+    --sidebar-bg: 218 68% 25%; /* Darker shade of logo blue */
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-hover: 218 68% 35%;
+
+    /* Yellow from logo - #f9be1d */
+    --secondary: 46 95% 55%; /* #f9be1d */
+    --secondary-foreground: 0 0% 0%;
+    --secondary-light: 46 95% 65%;
+
+    --accent: 0 0% 95%;
+    --accent-foreground: 0 0% 0%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 218 68% 35%;
+
+    /* Blue gradient for header */
+    --gradient-header: linear-gradient(135deg, hsl(var(--primary-light)) 0%, hsl(var(--primary-dark)) 100%);
+    
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 15%;
+    --sidebar-primary: 218 68% 35%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 95%;
+    --sidebar-accent-foreground: 0 0% 15%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 218 68% 35%;
+  }
+
+  .dark {
+    --background: 0 0% 0%; /* Black background for dark mode */
+    --foreground: 0 0% 100%; /* White text for dark mode */
+
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 218 68% 35%; /* Keep logo blue */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 46 95% 55%; /* Keep logo yellow */
+    --secondary-foreground: 0 0% 0%;
+
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 0 0% 10%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 218 68% 35%;
+    --sidebar-background: 0 0% 5%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 218 68% 35%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 218 68% 35%;
+  }
+}
+
+/* Professional background texture for law firm - updated for new color scheme */
+.bg-law-texture {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(28, 72, 151, 0.02) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(249, 190, 29, 0.03) 1px, transparent 1px),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(248, 250, 252, 0.9) 100%);
+  background-size: 40px 40px, 60px 60px, 100% 100%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
