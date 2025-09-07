@@ -1,9 +1,9 @@
 const MainContent = () => {
   return (
-    <div className="flex-1 bg-white p-8">
+    <div className="flex-1 bg-white/95 backdrop-blur-sm p-8">
       {/* Page title and navigation */}
       <div className="mb-6">
-        <h1 className="text-3xl font-light text-gray-800 mb-4">Commercial.TV</h1>
+        <h1 className="text-3xl font-light text-gray-800 mb-4">Commercial</h1>
         <div className="flex space-x-6 text-sm">
           <span className="text-gray-600">PUBLIC</span>
           <span className="text-gray-600">STUDENT</span>

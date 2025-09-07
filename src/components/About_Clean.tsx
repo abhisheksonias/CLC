@@ -22,7 +22,7 @@ const About = () => {
     {
       name: "Vimal Kumar",
       title: "Partner",
-      image: "/vimal",
+      image: "/placeholder.svg",
       experience: "10+ Years",
       description: "Vimal is a seasoned Chartered Accountant with over a decade of experience in audits, taxation, and litigation. He has advised a diverse clientele—including multinational corporations and Indian enterprises—on tax planning, corporate tax policy formulation, and regulatory compliance.",
       expertise: ["Direct Tax Advisory", "Audit & Compliance", "Tax Planning", "Corporate Policy"]
@@ -97,7 +97,7 @@ const About = () => {
         </div>
 
         {/* Stats Section */}
-        <div className="grid grid-cols-2 lg:grid-cols-2 gap-4 mb-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           {stats.map((stat, index) => (
             <div key={index} className="bg-white border border-gray-200 rounded-lg p-4 text-center">
               <stat.icon className="h-6 w-6 mx-auto mb-2 text-primary" />
@@ -144,7 +144,7 @@ const About = () => {
           <p className="text-gray-600">The experienced professionals leading our firm</p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {teamMembers.map((member, index) => (
             <div key={index} className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
               <div className="text-center mb-6">

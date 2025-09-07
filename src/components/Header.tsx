@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <header className="w-full">
       {/* Top teal header */}
-      <div className="bg-blue-600/20 backdrop-blur-lg text-black">
+      <div className="bg-white/70 backdrop-blur-lg text-black">
         <div className="max-w-full mx-auto px-4 py-3">
           <div className="flex justify-between items-center">
             <div className="flex items-center">
@@ -21,13 +21,13 @@ const Header = () => {
       </div>
 
       {/* Location tabs */}
-      <div className="bg-gray-100 border-b">
+      <div className="bg-blue-800/60 border-b">
         <div className="max-w-full mx-auto px-4">
           <div className="flex justify-center space-x-8 py-2">
             {locations.map((location) => (
               <button
                 key={location}
-                className="text-xs text-gray-600 hover:text-primary transition-colors py-1"
+                className="text-xs text-white hover:text-primary transition-colors py-1"
               >
                 {location}
               </button>

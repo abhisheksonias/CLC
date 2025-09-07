@@ -1,6 +1,6 @@
 const RightSidebar = () => {
   return (
-    <div className="w-80 bg-white border-l border-gray-200">
+    <div className="w-80 bg-white border-l border-gray-200 sticky top-0 self-start">
       {/* Search */}
       <div className="p-4 border-b border-gray-200">
         <div className="flex">
