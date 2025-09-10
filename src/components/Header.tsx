@@ -9,13 +9,12 @@ const Header = () => {
         <div className="max-w-full mx-auto px-4 py-3">
           <div className="flex justify-between items-center">
             <div className="flex items-center">
-              <img src="/clc-logo.png" alt="commercial law firm" className="h-10 w-auto" />
+              <img src="/clc-logo.png" alt="commercial law firm" className="h-14 w-auto" />
             </div>
-            <div className="text-center">
-              <h1 className="text-2xl  font-light">Commercial Law Chamber</h1>
-              <p className="text-xs tracking-wider">Leading Law Firm for Tax & Commercial Litigation</p>
+            <div className="text-center flex-1">
+              <p className="text-sm md:text-base tracking-wider">Advocates and Solicitors</p>
             </div>
-            <div className="w-32"></div> {/* Spacer for balance */}
+            <div className="w-14 md:w-32"></div> {/* Spacer for balance */}
           </div>
         </div>
       </div>

@@ -53,9 +53,6 @@ const Hero = () => {
       {/* Hero Section */}
       <section className="relative p-8 mb-8">
         <div className="text-center mb-8">
-          <h1 className="text-4xl lg:text-5xl font-light text-gray-800 mb-4">
-            Commercial Law Chamber
-          </h1>
           <p className="text-xl text-gray-600 mb-6">
             Leading Legal Excellence in Tax & Commercial Disputes Since 2008
           </p>

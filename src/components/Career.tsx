@@ -1,0 +1,213 @@
+import { Button } from "@/components/ui/button";
+import { Briefcase, Users, GraduationCap, Clock, MapPin, Building2, CheckCircle } from "lucide-react";
+
+const Career = () => {
+  const currentOpenings = [
+    {
+      title: "Senior Tax Counsel",
+      location: "New Delhi",
+      type: "Full-time",
+      experience: "8-12 years",
+      requirements: [
+        "LLB from a recognized university",
+        "Extensive experience in direct and indirect tax litigation",
+        "Strong research and analytical skills",
+        "Experience in Supreme Court appearances preferred"
+      ]
+    },
+    {
+      title: "Associate - Commercial Litigation",
+      location: "Mumbai",
+      type: "Full-time",
+      experience: "3-5 years",
+      requirements: [
+        "LLB with focus on commercial law",
+        "Experience in handling commercial disputes",
+        "Strong drafting skills",
+        "Knowledge of arbitration law"
+      ]
+    },
+    {
+      title: "Legal Research Associate",
+      location: "Bengaluru",
+      type: "Full-time",
+      experience: "1-3 years",
+      requirements: [
+        "LLB with excellent academic record",
+        "Strong legal research capabilities",
+        "Good writing and analytical skills",
+        "Knowledge of tax laws preferred"
+      ]
+    }
+  ];
+
+  const whyJoinUs = [
+    {
+      icon: Users,
+      title: "Collaborative Environment",
+      description: "Work with experienced professionals in a supportive team setting"
+    },
+    {
+      icon: GraduationCap,
+      title: "Learning & Development",
+      description: "Regular training programs and mentorship opportunities"
+    },
+    {
+      icon: Building2,
+      title: "Professional Growth",
+      description: "Clear career progression path and leadership opportunities"
+    },
+    {
+      icon: Clock,
+      title: "Work-Life Balance",
+      description: "Flexible working arrangements and supportive policies"
+    }
+  ];
+
+  return (
+    <div className="flex-1 bg-white/95 backdrop-blur-sm">
+      {/* Career Header Section */}
+      <section className="p-8 mb-8">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl lg:text-5xl font-light text-gray-800 mb-4">
+            Career Opportunities
+          </h1>
+          <p className="text-xl text-gray-600 mb-6">
+            Join Our Team of Legal Excellence
+          </p>
+        </div>
+
+        {/* Introduction */}
+        <div className="bg-gray-50 rounded-lg p-6 mb-8">
+          <div className="max-w-3xl mx-auto">
+            <p className="text-gray-600 leading-relaxed mb-4">
+              At Commercial Law Chamber, we are always looking for talented professionals who share our 
+              commitment to excellence and client service. We offer a dynamic work environment where you 
+              can grow your career while working on challenging and meaningful cases.
+            </p>
+            <p className="text-gray-600 leading-relaxed">
+              Our firm provides opportunities for both experienced lawyers and fresh graduates who demonstrate 
+              exceptional potential and a passion for tax and commercial law.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Current Openings Section */}
+      <section className="p-8 mb-8 border-t border-gray-200">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl font-light text-gray-800 mb-2">Current Openings</h2>
+          <p className="text-gray-600">Available positions across our offices</p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6">
+          {currentOpenings.map((job, index) => (
+            <div key={index} className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-800 mb-2">{job.title}</h3>
+                  <div className="flex flex-wrap gap-3 text-sm text-gray-600">
+                    <span className="flex items-center">
+                      <MapPin className="h-4 w-4 mr-1" />
+                      {job.location}
+                    </span>
+                    <span className="flex items-center">
+                      <Briefcase className="h-4 w-4 mr-1" />
+                      {job.type}
+                    </span>
+                    <span className="flex items-center">
+                      <Clock className="h-4 w-4 mr-1" />
+                      {job.experience}
+                    </span>
+                  </div>
+                </div>
+                <Button className="mt-4 md:mt-0 bg-primary hover:bg-primary-dark text-white">
+                  Apply Now
+                </Button>
+              </div>
+              <div className="space-y-2">
+                <h4 className="font-semibold text-gray-700">Requirements:</h4>
+                <ul className="space-y-2">
+                  {job.requirements.map((req, reqIndex) => (
+                    <li key={reqIndex} className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-primary mr-2 mt-0.5" />
+                      <span className="text-gray-600">{req}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Why Join Us Section */}
+      <section className="p-8 mb-8 border-t border-gray-200">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl font-light text-gray-800 mb-2">Why Join Us</h2>
+          <p className="text-gray-600">Benefits of building your career with CLC</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {whyJoinUs.map((benefit, index) => (
+            <div key={index} className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+              <div className="flex items-start gap-4">
+                <div className="bg-primary/10 rounded-lg p-3">
+                  <benefit.icon className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-800 mb-2">{benefit.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{benefit.description}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Application Process */}
+      <section className="p-8 border-t border-gray-200">
+        <div className="bg-gray-100 rounded-lg p-6">
+          <div className="text-center mb-6">
+            <h2 className="text-2xl font-light text-gray-800 mb-2">Application Process</h2>
+            <p className="text-gray-600">How to join our team</p>
+          </div>
+          
+          <div className="max-w-3xl mx-auto">
+            <div className="space-y-4 text-gray-600">
+              <p>
+                To apply for any of the positions listed above, please send your:
+              </p>
+              <ul className="space-y-2 ml-6">
+                <li className="flex items-center">
+                  <CheckCircle className="h-4 w-4 text-primary mr-2" />
+                  Detailed CV
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="h-4 w-4 text-primary mr-2" />
+                  Cover letter explaining your interest in CLC
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="h-4 w-4 text-primary mr-2" />
+                  Academic transcripts
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="h-4 w-4 text-primary mr-2" />
+                  Writing sample (for legal positions)
+                </li>
+              </ul>
+              <p className="mt-4">
+                Send your application to: <span className="text-primary">careers@clc.in</span>
+              </p>
+              <p className="text-sm text-gray-500 mt-4">
+                * We review all applications carefully and will contact shortlisted candidates for interviews.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Career;
