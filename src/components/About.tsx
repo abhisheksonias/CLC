@@ -1,6 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Building2, Users, Gavel, TrendingUp, Scale, Shield, Award, BookOpen, Target, Globe, CheckCircle, User, MapPin, Phone, Mail, Heart, Eye, Lightbulb } from "lucide-react";
+import { Building2, Users, Gavel, TrendingUp, Scale, Shield, Award, BookOpen, Target, Globe, CheckCircle, MapPin, Phone, Mail, Heart, Eye, Lightbulb } from "lucide-react";
+import TeamMember, { teamMembers } from "./TeamMember";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 const About = () => {
   const stats = [
@@ -10,32 +12,7 @@ const About = () => {
     { icon: Gavel, label: "States", value: "All Capitals" },
   ];
 
-  const teamMembers = [
-    {
-      name: "Vivek Sarin",
-      title: "Founding Partner",
-      image: "/vivek.jpg",
-      experience: "20+ Years",
-      description: "Vivek Sarin is the Founding Partner of Commercial Law Chambers, a New Delhi-based boutique firm specializing in Tax, Regulatory, and Commercial Disputes. With over 20 years of experience, he represents clients in high-stakes litigation before the Supreme Court, multiple High Courts, tribunals including ITAT, CESTAT, VAT Appellate Tribunals, and forums such as NCLT.",
-      expertise: ["Constitutional Tax Challenges", "Supreme Court Litigation", "CIRP Matters", "Regulatory Pricing"]
-    },
-    {
-      name: "Vimal Kumar",
-      title: "Partner",
-      image: "/vimal",
-      experience: "10+ Years",
-      description: "Vimal is a seasoned Chartered Accountant with over a decade of experience in audits, taxation, and litigation. He has advised a diverse clientele—including multinational corporations and Indian enterprises—on tax planning, corporate tax policy formulation, and regulatory compliance.",
-      expertise: ["Direct Tax Advisory", "Audit & Compliance", "Tax Planning", "Corporate Policy"]
-    },
-    {
-      name: "Shreyas Srivastava",
-      title: "Partner",
-      image: "/shreya.jpg",
-      experience: "12+ Years",
-      description: "Shreyas is a seasoned counsel with over 12 years of experience in direct and indirect taxation. At Commercial Law Chambers, he leads complex litigation and advisory mandates with a strategic focus on Income Tax, GST, and Customs matters, including international trade remedies such as anti-dumping and safeguard duties.",
-      expertise: ["GST & Customs", "Trade Remedies", "Cross-border Tax", "Industry Advisory"]
-    }
-  ];
+  // Team members are imported from TeamMember component
 
   const approaches = [
     {
@@ -137,52 +114,16 @@ const About = () => {
         </div>
       </section>
 
-      {/* Our Team Section - Improved Layout */}
+      {/* Our Team Section */}
       <section className="p-8 mb-8 border-t border-gray-200">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-light text-gray-800 mb-2">Meet Our Team</h2>
           <p className="text-gray-600">The experienced professionals leading our firm</p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-8 max-w-6xl mx-auto">
-          {teamMembers.map((member, index) => (
-            <div key={index} className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
-              <div className="text-center mb-6">
-                {member.image === "/placeholder.svg" ? (
-                  <div className="w-24 h-24 mx-auto bg-gray-200 rounded-full flex items-center justify-center mb-4">
-                    <User className="h-12 w-12 text-gray-400" />
-                  </div>
-                ) : (
-                  <img
-                    className="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-2 border-gray-100"
-                    src={member.image}
-                    alt={`Photo of ${member.name}`}
-                  />
-                )}
-                <h3 className="text-xl font-semibold text-gray-800 mb-1">{member.name}</h3>
-                <p className="text-primary font-medium mb-2">{member.title}</p>
-                <p className="text-sm text-gray-500 mb-4">{member.experience}</p>
-              </div>
-              
-              <div className="text-left space-y-4">
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  {member.description.length > 180 
-                    ? `${member.description.substring(0, 180)}...` 
-                    : member.description}
-                </p>
-                
-                <div>
-                  <h4 className="font-semibold text-gray-800 text-sm mb-2">Key Expertise</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {member.expertise.map((skill, skillIndex) => (
-                      <span key={skillIndex} className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {Object.values(teamMembers).map((member) => (
+            <TeamMember key={member.id} member={member} />
           ))}
         </div>
       </section>

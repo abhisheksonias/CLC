@@ -2,10 +2,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Download, Eye, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Insights = () => {
   const blogs = [
     {
+      slug: "interim-relief-tds-prosecution",
       title: "Interim Relief Granted in TDS Prosecution: A Notable Decision by Allahabad High Court",
       excerpt: "The Hon'ble High Court of Allahabad has granted interim relief to two applicants in a case concerning delayed deposit of Tax Deducted at Source (TDS). The decision is noteworthy for its interpretation of Section 276B of the Income Tax Act.",
       date: "July 9, 2025",
@@ -14,6 +16,7 @@ const Insights = () => {
       isNew: true
     },
     {
+      slug: "nclt-operational-debt-cirp",
       title: "NCLT Admits Insolvency Petition for Default in Operational Debt",
       excerpt: "A petition under Section 9 of the Insolvency and Bankruptcy Code, 2016 was filed seeking initiation of the Corporate Insolvency Resolution Process (CIRP) against a corporate debtor for default in repayment of operational dues amounting to over ₹11 crore.",
       date: "June 15, 2025",
@@ -22,6 +25,7 @@ const Insights = () => {
       isNew: true
     },
     {
+      slug: "ncdrc-fire-insurance-oversight",
       title: "NCDRC Holds Insurer Liable for Own Oversight in Fire Insurance Claim",
       excerpt: "In a landmark ruling that underscores the importance of insurer accountability and service diligence, the National Consumer Disputes Redressal Commission (NCDRC) has held Oriental Insurance Company Ltd. liable for wrongfully repudiating an insurance claim.",
       date: "February 13, 2025",
@@ -30,6 +34,7 @@ const Insights = () => {
       isNew: false
     },
     {
+      slug: "delhi-hc-gst-fresh-hearing",
       title: "Delhi High Court Grants Fresh Hearing to GST Defaulter Amidst Pending SC Verdict",
       excerpt: "In a recent ruling with implications for taxpayers grappling with procedural lapses and legal uncertainties, the Delhi High Court has granted a fresh hearing to M/s Jinender Paper Mart, whose GST registration was suspended and subsequently cancelled.",
       date: "July 10, 2025",
@@ -85,8 +90,10 @@ const Insights = () => {
                     </Badge>
                   )}
                 </div>
-                <CardTitle className="text-xl leading-tight hover:text-primary transition-colors cursor-pointer">
-                  {blog.title}
+                <CardTitle className="text-xl leading-tight hover:text-primary transition-colors">
+                  <Link to={`/blog/${blog.slug}`} className="cursor-pointer">
+                    {blog.title}
+                  </Link>
                 </CardTitle>
               </CardHeader>
               
@@ -107,10 +114,12 @@ const Insights = () => {
                 </div>
                 
                 <div className="flex gap-3">
-                  <Button variant="outline" size="sm" className="flex-1">
-                    <Eye className="mr-2 h-4 w-4" />
-                    Read Article
-                  </Button>
+                  <Link to={`/blog/${blog.slug}`} className="flex-1">
+                    <Button variant="outline" size="sm" className="w-full">
+                      <Eye className="mr-2 h-4 w-4" />
+                      Read Article
+                    </Button>
+                  </Link>
                   <Button variant="outline" size="sm">
                     <Download className="h-4 w-4" />
                   </Button>
