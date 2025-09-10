@@ -65,16 +65,18 @@ const Contact = () => {
               <Card key={index} className="shadow-card">
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
-                    <div className="p-2 bg-primary rounded-lg">
+                    <div className="p-2 bg-primary rounded-lg flex-shrink-0">
                       <info.icon className="h-5 w-5 text-white" />
                     </div>
-                    <div>
+                    <div className="min-w-0 flex-1">
                       <h3 className="font-semibold text-primary mb-2">{info.title}</h3>
-                      {info.details.map((detail, i) => (
-                        <p key={i} className="text-sm text-muted-foreground mb-1">
-                          {detail}
-                        </p>
-                      ))}
+                      <div className="space-y-1">
+                        {info.details.map((detail, i) => (
+                          <p key={i} className="text-sm text-muted-foreground break-words">
+                            {detail}
+                          </p>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </CardContent>

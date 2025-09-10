@@ -26,7 +26,7 @@ const teamMembers = {
     image: "/vivek.jpg",
     experience: "20+ Years",
     location: "New Delhi",
-    shortDescription: "Vivek Sarin is the Founding Partner of Commercial Law Chambers, a New Delhi-based boutique firm specializing in Tax, Regulatory, and Commercial Disputes.",
+    shortDescription: "Founding Partner with 20+ years of experience in tax litigation, regulatory compliance, and commercial disputes across Supreme Court and High Courts.",
     fullDescription: [
       "Vivek Sarin is the Founding Partner of Commercial Law Chambers, a New Delhi-based boutique firm specializing in Tax, Regulatory, and Commercial Disputes. With over 20 years of experience, he represents clients in high-stakes litigation before the Supreme Court, multiple High Courts, tribunals including ITAT, CESTAT, VAT Appellate Tribunals, and forums such as NCLT.",
       "His expertise spans constitutional tax challenges, shareholder disputes, and CIRP matters, as well as regulatory pricing issues involving NPPA, TRAI, AERA, and Electricity Commissions. He advises leading companies across sectors—FMCG, Healthcare, Technology, and more—on CGST, VAT, Customs, Income Tax, and compliance strategy.",
@@ -51,7 +51,7 @@ const teamMembers = {
     image: "/vimal.jpg",
     experience: "10+ Years",
     location: "New Delhi",
-    shortDescription: "Vimal is a seasoned Chartered Accountant with over a decade of experience in audits, taxation, and litigation.",
+    shortDescription: "Chartered Accountant with 10+ years of expertise in direct and indirect tax advisory, corporate tax policy, and regulatory compliance matters.",
     fullDescription: [
       "Vimal is a seasoned Chartered Accountant with over a decade of experience in audits, taxation, and litigation. He has advised a diverse clientele—including multinational corporations and Indian enterprises—on tax planning, corporate tax policy formulation, and regulatory compliance.",
       "With a strong foundation in audit and tax frameworks, Vimal brings practical insight and strategic depth to every assignment. His work spans direct and indirect tax matters, representation before tax authorities, and end-to-end support in advisory and compliance mandates."
@@ -75,7 +75,7 @@ const teamMembers = {
     image: "/shreya.jpg",
     experience: "12+ Years",
     location: "New Delhi",
-    shortDescription: "Shreyas is a seasoned counsel with over 12 years of experience in direct and indirect taxation.",
+    shortDescription: "Partner with 12+ years of experience in direct and indirect taxation, international trade remedies, and cross-border tax advisory matters.",
     fullDescription: [
       "Shreyas is a seasoned counsel with over 12 years of experience in direct and indirect taxation. At Commercial Law Chambers, he leads complex litigation and advisory mandates with a strategic focus on Income Tax, GST, and Customs matters, including international trade remedies such as anti-dumping and safeguard duties.",
       "Shreyas has represented clients across a wide range of industries including FMCG, Consumer Durables, Aviation, Real Estate, Banking & Finance, Insurance, and Food & Beverage. His practice spans high-stakes tax disputes, regulatory representation, and advisory on cross-border trade issues.",
@@ -195,7 +195,7 @@ const TeamMember = ({ member, variant = "card" }: TeamMemberProps) => {
   }
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+    <div className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow flex flex-col h-full">
       <div className="text-center mb-6">
         {member.image ? (
           <img
@@ -222,36 +222,38 @@ const TeamMember = ({ member, variant = "card" }: TeamMemberProps) => {
         </div>
       </div>
       
-      <p className="text-gray-600 text-sm leading-relaxed mb-6">
-        {member.shortDescription}
-      </p>
+      <div className="flex-grow flex flex-col">
+        <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow">
+          {member.shortDescription}
+        </p>
 
-      <div className="flex flex-wrap gap-2 mb-6">
-        {member.expertise.slice(0, 3).map((skill, index) => (
-          <span
-            key={index}
-            className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full"
-          >
-            {skill}
-          </span>
-        ))}
+        <div className="flex flex-wrap gap-2 mb-6">
+          {member.expertise.slice(0, 3).map((skill, index) => (
+            <span
+              key={index}
+              className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full"
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button className="w-full bg-primary hover:bg-primary-dark text-white mt-auto">
+              View Profile
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle className="text-2xl font-light">Team Member Profile</DialogTitle>
+              <DialogDescription>
+                <TeamMember member={member} variant="detailed" />
+              </DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
       </div>
-
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button className="w-full bg-primary hover:bg-primary-dark text-white">
-            View Profile
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-light">Team Member Profile</DialogTitle>
-            <DialogDescription>
-              <TeamMember member={member} variant="detailed" />
-            </DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };

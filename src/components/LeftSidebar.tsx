@@ -32,7 +32,7 @@ const LeftSidebar = ({ activeSection = "home", setActiveSection }: LeftSidebarPr
   ];
 
   return (
-    <div className="w-full lg:w-auto bg-slate-900/70 backdrop-blur-lg text-slate-300 h-fit flex flex-col border-r border-white/10 sticky top-0 self-start">
+    <div className="w-full lg:w-auto bg-slate-900/70 backdrop-blur-lg text-slate-300 h-fit flex flex-col border-r border-white/10 sticky top-0 self-start lg:max-h-screen overflow-y-auto">
       <div className="p-2">
         {/* Main navigation */}
         <nav className="space-y-1">
