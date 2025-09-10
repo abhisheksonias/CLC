@@ -18,7 +18,7 @@ const RightSidebar = () => {
       {/* Mission and Vision */}
       <div className="border-b border-gray-200">
         <div className="bg-gray-600 text-white px-4 py-2">
-          <h3 className="text-sm font-semibold">MISSION AND VISION</h3>
+          <h3 className="text-sm font-semibold">INSIGHTS AND PUBLICATIONS</h3>
         </div>
         <div className="p-4">
           <p className="text-sm text-gray-700">Distinctly Different</p>
