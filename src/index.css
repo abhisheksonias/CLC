@@ -144,6 +144,11 @@
   display: none;
 }
 
+/* Poppins font utility class */
+.poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
 /* Poppins font for sidebars, excluding p tags */
 .sidebar-poppins {
   font-family: 'Poppins', sans-serif;

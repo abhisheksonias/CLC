@@ -53,10 +53,10 @@ const Hero = () => {
       {/* Hero Section */}
       <section className="relative p-8 mb-8">
         <div className="text-center mb-8">
-          <p className="text-xl text-gray-600 mb-6">
+          <h1 className="text-2xl poppins text-gray-600 font-bold mb-6">
             Leading Legal Excellence in Tax & Commercial Disputes Since 2008
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          </h1>
+          <div className=" poppins flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               className="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-lg font-medium"
             >
@@ -77,7 +77,7 @@ const Hero = () => {
           <div className="text-center">
             <div className="bg-primary text-white px-4 py-2 rounded-lg mb-2 inline-block">
             </div>
-            <h2 className="text-xl font-semibold text-white mb-2">
+            <h2 className=" text-xl font-semibold text-white mb-2">
               Strategic Legal Solutions for Modern Business
             </h2>
             <p className="text-white">
@@ -90,7 +90,7 @@ const Hero = () => {
       {/* Welcome Message */}
       <section className="p-8 mb-8 border-t border-gray-200">
         <div className="bg-gray-50 rounded-lg p-6">
-          <h2 className="text-2xl font-light text-gray-800 mb-4">Welcome to Commercial Law Chamber</h2>
+          <h2 className="text-2xl font-bold poppins text-gray-800 mb-4">Welcome to Commercial Law Chamber</h2>
           <div className="grid lg:grid-cols-1 gap-6">
             <div>
               <p className="text-gray-600 leading-relaxed mb-4">
@@ -104,7 +104,7 @@ const Hero = () => {
               </p>
             </div>
             <div className="bg-white rounded-lg p-4 border border-gray-200">
-              <h3 className="font-semibold text-gray-800 mb-3">Our Distinction</h3>
+              <h3 className="font-semibold poppins text-gray-800 mb-3">Our Distinction</h3>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li className="flex items-center">
                   <Shield className="h-4 w-4 text-primary mr-2" />
@@ -131,7 +131,7 @@ const Hero = () => {
       {/* Core Practice Areas */}
       <section className="p-8 mb-8 border-t border-gray-200">
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-light text-gray-800 mb-2">Core Practice Areas</h2>
+          <h2 className="text-2xl poppins  font-bold text-gray-800 mb-2">Core Practice Areas</h2>
           <p className="text-gray-600">Comprehensive legal solutions across key practice domains</p>
         </div>
         
@@ -153,13 +153,13 @@ const Hero = () => {
       {/* Why Choose CLC */}
       <section className="p-8 border-t border-gray-200">
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-light text-gray-800 mb-2">Why Choose Commercial Law Chamber</h2>
+          <h2 className="text-2xl font-bold poppins text-gray-800 mb-2">Why Choose Commercial Law Chamber</h2>
           <p className="text-gray-600">Distinguished by excellence, expertise, and client-centric approach</p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {whyChooseUs.map((item, index) => (
-            <div key={index} className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+            <div key={index} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
               <div className="flex items-start gap-4">
                 <div className="bg-primary/10 rounded-lg p-3">
                   <item.icon className="h-6 w-6 text-primary" />
@@ -173,7 +173,7 @@ const Hero = () => {
           ))}
         </div>
         
-        <div className="mt-8 bg-white border border-gray-200 rounded-lg p-6">
+        <div className="mt-8 poppins bg-white border border-gray-200 rounded-lg p-6">
           <div className="text-center">
             <h3 className="font-semibold text-gray-800 mb-2">Legal Excellence Since 2008</h3>
             <p className="text-gray-600 text-sm mb-4">

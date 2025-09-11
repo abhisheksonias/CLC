@@ -63,9 +63,9 @@ const About = () => {
   return (
     <div className="flex-1 bg-white/95 backdrop-blur-sm">
       {/* About Header Section */}
-      <section className="p-8 mb-8">
+      <section className="p-10 poppins mb-2">
         <div className="text-center mb-8">
-          <h1 className="text-4xl lg:text-5xl font-light text-gray-800 mb-4">
+          <h1 className="text-3xl poppins lg:text-3xl font-bold text-gray-800 mb-4">
             About Commercial Law Chamber
           </h1>
           <p className="text-xl text-gray-600 mb-6">
@@ -74,11 +74,11 @@ const About = () => {
         </div>
 
         {/* Stats Section */}
-        <div className="grid grid-cols-2 lg:grid-cols-2 gap-4 mb-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 mb-8">
           {stats.map((stat, index) => (
             <div key={index} className="bg-white border border-gray-200 rounded-lg p-4 text-center">
               <stat.icon className="h-6 w-6 mx-auto mb-2 text-primary" />
-              <div className="text-2xl font-bold text-primary mb-1">{stat.value}</div>
+              <div className="text-xl font-bold text-primary mb-1">{stat.value}</div>
               <div className="text-xs text-gray-500">{stat.label}</div>
             </div>
           ))}
@@ -86,9 +86,9 @@ const About = () => {
       </section>
 
       {/* Our Story Section */}
-      <section className="p-8 mb-8 border-t border-gray-200">
+      <section className="p-4 mb-8 border-t border-gray-200">
         <div className="bg-gray-50 rounded-lg p-6">
-          <h2 className="text-2xl font-light text-gray-800 mb-6">Our Story</h2>
+          <h2 className="text-2xl font-bold poppins  text-gray-800 mb-6">Our Story</h2>
           <div className="space-y-4 text-gray-600 leading-relaxed">
             <p>
               Founded in 2008, Commercial Law Chamber emerged from a vision to create a boutique law practice 
@@ -117,7 +117,7 @@ const About = () => {
       {/* Our Team Section */}
       <section className="p-8 mb-8 border-t border-gray-200">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-light text-gray-800 mb-2">Meet Our Team</h2>
+          <h2 className="text-3xl font-bold poppins text-gray-800 mb-2">Meet Our Team</h2>
           <p className="text-gray-600">The experienced professionals leading our firm</p>
         </div>
         
@@ -131,11 +131,11 @@ const About = () => {
       {/* Our Approach Section */}
       <section className="p-8 mb-8 border-t border-gray-200">
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-light text-gray-800 mb-2">Our Approach</h2>
+          <h2 className="text-2xl poppins font-bold text-gray-800 mb-2">Our Approach</h2>
           <p className="text-gray-600">Methodology in handling complex legal matters</p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div className="grid grid-cols-1  md:grid-cols-2 gap-4 mb-6">
           {approaches.map((approach, index) => (
             <div key={index} className="bg-white border border-gray-200 rounded-lg p-4">
               <div className="flex items-start gap-3">
@@ -165,7 +165,7 @@ const About = () => {
       {/* Values & Vision Section */}
       <section className="p-8 mb-8 border-t border-gray-200">
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-light text-gray-800 mb-2">Values & Vision</h2>
+          <h2 className="text-2xl font-bold poppins text-gray-800 mb-2">Values & Vision</h2>
           <p className="text-gray-600">Core principles of client service and ethical standards</p>
         </div>
         
@@ -182,7 +182,7 @@ const About = () => {
         </div>
 
         <div className="bg-gray-50 rounded-lg p-6">
-          <h3 className="font-semibold text-gray-800 mb-3">Our Vision</h3>
+          <h3 className="font-semibold poppins text-gray-800 mb-3">Our Vision</h3>
           <p className="text-gray-600 leading-relaxed">
             We are proud of our track record in precedent-setting matters across courts and tribunals—rulings 
             that have shaped jurisprudence on anti-dumping, transfer pricing, indirect taxes, and constitutional 
@@ -193,7 +193,7 @@ const About = () => {
       </section>
 
       {/* Office Location & Infrastructure Section */}
-      <section className="p-8 border-t border-gray-200">
+      {/* <section className="p-8  border-t border-gray-200">
         <div className="bg-gray-100 rounded-lg p-6">
           <div className="text-center mb-6">
             <div className="bg-primary/10 rounded-full p-3 inline-block mb-4">
@@ -244,7 +244,7 @@ const About = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };

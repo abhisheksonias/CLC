@@ -44,12 +44,12 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contacts" className="py-20 bg-white/95 backdrop-blur-sm">
+    <section id="contacts" className="py-10 bg-white/95 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4">Contact Us</Badge>
-          <h2 className="text-4xl font-bold text-primary mb-6">
+          {/* <Badge variant="secondary" className="mb-4">Contact Us</Badge> */}
+          <h2 className="text-4xl font-bold poppins text-gray-800 mb-6">
             Get Expert Legal Consultation
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
