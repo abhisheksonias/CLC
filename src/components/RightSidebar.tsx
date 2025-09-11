@@ -1,16 +1,16 @@
 const RightSidebar = () => {
   return (
-    <div className="w-full lg:w-auto bg-white border-l border-gray-200 sticky top-0 self-start">
+    <div className="right-sidebar w-full lg:w-auto bg-white border-l border-gray-200 sticky top-0 self-start">
       {/* Search */}
       <div className="p-4 border-b border-gray-200">
         <div className="flex">
-          <input 
-            type="text" 
-            placeholder="Search Articles" 
-            className="flex-1 px-3 py-2 border border-gray-300 text-sm"
+          <input
+            type="text"
+            placeholder="Search Articles"
+            className="flex-1 min-w-0 px-2 py-2 border border-gray-300 text-sm rounded-l border-r-0"
           />
-          <button className="px-4 py-2 bg-gray-600 text-white text-sm">
-            SEARCH
+          <button className="px-2 py-2 bg-gray-600 text-white text-xs font-medium rounded-r flex-shrink-0">
+            GO
           </button>
         </div>
       </div>
