@@ -195,22 +195,22 @@ const TeamMember = ({ member, variant = "card" }: TeamMemberProps) => {
   }
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow flex flex-col h-full">
-      <div className="text-center mb-6">
+    <div className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-shadow flex flex-col h-full">
+      <div className="text-center mb-4">
         {member.image ? (
           <img
             src={member.image}
             alt={member.name}
-            className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-2 border-gray-100"
+            className="w-28 h-28 rounded-full mx-auto mb-3 object-cover border-2 border-gray-100"
           />
         ) : (
-          <div className="w-32 h-32 mx-auto bg-gray-200 rounded-full flex items-center justify-center mb-4">
-            <User className="w-16 h-16 text-gray-400" />
+          <div className="w-28 h-28 mx-auto bg-gray-200 rounded-full flex items-center justify-center mb-3">
+            <User className="w-14 h-14 text-gray-400" />
           </div>
         )}
-        <h3 className="text-xl font-semibold text-gray-800 mb-1">{member.name}</h3>
+        <h3 className="text-lg font-semibold text-gray-800 mb-1 whitespace-nowrap">{member.name}</h3>
         <p className="text-primary font-medium mb-2">{member.title}</p>
-        <div className="flex justify-center gap-3 text-sm text-gray-600 mb-4">
+        <div className="flex justify-center gap-3 text-sm text-gray-600 mb-3">
           <span className="flex items-center">
             <Briefcase className="w-4 h-4 mr-1" />
             {member.experience}
@@ -223,11 +223,11 @@ const TeamMember = ({ member, variant = "card" }: TeamMemberProps) => {
       </div>
       
       <div className="flex-grow flex flex-col">
-        <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow">
+        <p className="text-gray-600 text-sm leading-relaxed mb-4 flex-grow">
           {member.shortDescription}
         </p>
 
-        <div className="flex flex-wrap gap-2 mb-6">
+        <div className="flex flex-wrap gap-2 mb-4">
           {member.expertise.slice(0, 3).map((skill, index) => (
             <span
               key={index}

@@ -72,15 +72,15 @@ const Hero = () => {
           </div>
         </div>
         
-        <div className="bg-gray-100 aspect-video rounded-lg flex items-center justify-center mb-8">
+        <div className="bg-gray-100 aspect-video rounded-lg flex items-center justify-center mb-8"
+        style={{ backgroundImage: 'url(/herobg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} >
           <div className="text-center">
-            <div className="bg-primary text-white p-4 rounded-lg mb-4 inline-block">
-              <Briefcase className="h-8 w-8" />
+            <div className="bg-primary text-white px-4 py-2 rounded-lg mb-2 inline-block">
             </div>
-            <h2 className="text-xl font-semibold text-gray-800 mb-2">
+            <h2 className="text-xl font-semibold text-white mb-2">
               Strategic Legal Solutions for Modern Business
             </h2>
-            <p className="text-gray-600">
+            <p className="text-white">
               Boutique law practice with deep specialization in tax advisory and dispute resolution
             </p>
           </div>
