@@ -51,7 +51,7 @@ const Hero = () => {
   return (
     <div className="flex-1 bg-white/95 backdrop-blur-sm">
       {/* Hero Section */}
-      <section className="relative p-8 mb-8">
+      <section className="relative p-8 ">
         <div className="text-center mb-8">
           <h1 className="text-2xl poppins text-gray-600 font-bold mb-6">
             Leading Legal Excellence in Tax & Commercial Disputes Since 2008
@@ -92,7 +92,7 @@ const Hero = () => {
       </section>
 
       {/* Welcome Message */}
-      <section className="p-8 mb-8 border-t border-gray-200">
+      <section className="p-8  border-t border-gray-200">
         <div className="bg-gray-50 rounded-lg p-6">
           <h2 className="text-2xl font-bold poppins text-gray-800 mb-4">Welcome to Commercial Law Chamber</h2>
           <div className="grid lg:grid-cols-1 gap-6">
