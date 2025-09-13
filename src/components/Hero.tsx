@@ -57,27 +57,31 @@ const Hero = () => {
             Leading Legal Excellence in Tax & Commercial Disputes Since 2008
           </h1>
           <div className=" poppins flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
+            <Button
               className="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-lg font-medium"
             >
               Get Legal Consultation
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               className="border-gray-300 text-gray-700 hover:bg-gray-50 px-6 py-3 rounded-lg"
             >
               Our Expertise
             </Button>
           </div>
         </div>
-        
-        <div className="bg-gray-100 aspect-video rounded-lg flex items-center justify-center mb-8"
-        style={{ backgroundImage: 'url(/herobg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} >
-          <div className="text-center">
-            <div className="bg-primary text-white px-4 py-2 rounded-lg mb-2 inline-block">
-            </div>
-            <h2 className=" text-xl font-semibold text-white mb-2">
+
+        <div
+          className="bg-gray-100 aspect-video rounded-lg flex items-end justify-center mb-8"
+          style={{
+            backgroundImage: 'url(/herobg.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          <div className="text-center bg-gray-800/70 rounded-lg p-4">
+            <h2 className="text-xl font-semibold text-white mb-2">
               Strategic Legal Solutions for Modern Business
             </h2>
             <p className="text-white">
@@ -94,12 +98,12 @@ const Hero = () => {
           <div className="grid lg:grid-cols-1 gap-6">
             <div>
               <p className="text-gray-600 leading-relaxed mb-4">
-                Founded in 2008, Commercial Law Chamber is a boutique law practice distinguished by its deep 
-                specialization in tax advisory and dispute resolution. With three seasoned Partners and a team 
+                Founded in 2008, Commercial Law Chamber is a boutique law practice distinguished by its deep
+                specialization in tax advisory and dispute resolution. With three seasoned Partners and a team
                 of 15 adept associates, we operate through a robust national network of legal professionals.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                Our philosophy is rooted in strategic thinking and rigorous legal research—crafting bespoke 
+                Our philosophy is rooted in strategic thinking and rigorous legal research—crafting bespoke
                 solutions that align with both legal precedents and commercial imperatives.
               </p>
             </div>
@@ -134,7 +138,7 @@ const Hero = () => {
           <h2 className="text-2xl poppins  font-bold text-gray-800 mb-2">Core Practice Areas</h2>
           <p className="text-gray-600">Comprehensive legal solutions across key practice domains</p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
           {practiceAreas.map((area, index) => (
             <div key={index} className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
@@ -156,7 +160,7 @@ const Hero = () => {
           <h2 className="text-2xl font-bold poppins text-gray-800 mb-2">Why Choose Commercial Law Chamber</h2>
           <p className="text-gray-600">Distinguished by excellence, expertise, and client-centric approach</p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {whyChooseUs.map((item, index) => (
             <div key={index} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
@@ -172,7 +176,7 @@ const Hero = () => {
             </div>
           ))}
         </div>
-        
+
         <div className="mt-8 poppins bg-white border border-gray-200 rounded-lg p-6">
           <div className="text-center">
             <h3 className="font-semibold text-gray-800 mb-2">Legal Excellence Since 2008</h3>

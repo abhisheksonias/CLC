@@ -39,7 +39,7 @@ const Header = () => {
               </a>
 
               <a
-                href="https://www.linkedin.com"
+                href=" https://www.linkedin.com/company/7953220/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-600 hover:text-blue-600 transition-colors"

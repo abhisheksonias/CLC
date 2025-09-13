@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Scale, Mail, Phone, MapPin, Linkedin, Twitter } from "lucide-react";
+import { Scale, Mail, Phone, MapPin, Linkedin, Twitter, Instagram } from "lucide-react";
 
 const Footer = () => {
   const practiceAreas = [
@@ -22,7 +22,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gray-100/90 backdrop-blur-sm border-t border-gray-200/50 text-gray-600">
+    <footer className="poppins bg-gray-100/90 backdrop-blur-sm border-t border-gray-200/50 text-gray-600">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
         <div className="py-8">
@@ -39,11 +39,14 @@ const Footer = () => {
                 advisory and dispute resolution across India.
               </p>
               <div className="flex space-x-3">
-                <a href="#" className="text-gray-500 hover:text-gray-700 transition-colors">
+                <a href="https://www.linkedin.com/company/7953220/" className="text-gray-500 hover:text-gray-700 transition-colors">
                   <Linkedin className="h-4 w-4" />
                 </a>
-                <a href="#" className="text-gray-500 hover:text-gray-700 transition-colors">
+                <a href="https://twitter.com/yourtwitterhandle" className="text-gray-500 hover:text-gray-700 transition-colors">
                   <Twitter className="h-4 w-4" />
+                </a>
+                <a href="https://www.instagram.com/yourinstagramhandle" className="text-gray-500 hover:text-gray-700 transition-colors">
+                  <Instagram className="h-4 w-4" />
                 </a>
               </div>
             </div>
