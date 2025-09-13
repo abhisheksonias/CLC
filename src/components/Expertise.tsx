@@ -109,10 +109,10 @@ const Expertise = () => {
                     </div>
 
                     <div className="mt-6">
-                      <Button variant="outline" className="w-full">
+                      {/* <Button variant="outline" className="w-full">
                         Learn More About This Practice
                         <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button>
+                      </Button> */}
                     </div>
                   </div>
                 </div>
