@@ -25,7 +25,7 @@ const Footer = () => {
     <footer className="poppins bg-gray-100/90 backdrop-blur-sm border-t border-gray-200/50 text-gray-600">
       <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8">
         {/* Main Footer Content */}
-        <div className="py-4 sm:py-6 md:py-8">
+        <div className="py-4 sm:py-6 md:py-8 m-5">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {/* Company Info */}
             <div className="sm:col-span-2 lg:col-span-1">
@@ -51,32 +51,37 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Practice Areas */}
-            <div className="sm:col-span-1">
-              <h4 className="font-semibold text-xs sm:text-sm mb-3 sm:mb-4 text-gray-700">Practice Areas</h4>
-              <ul className="space-y-1 sm:space-y-2">
-                {practiceAreas.map((area, index) => (
-                  <li key={index}>
-                    <a href="#" className="text-xs sm:text-sm text-gray-500 hover:text-gray-700 transition-colors">
-                      {area}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {/* Practice Areas and Quick Links Grid */}
+            <div className="sm:col-span-2 lg:col-span-2">
+              <div className="grid grid-cols-2 gap-4 sm:gap-6">
+                {/* Practice Areas */}
+                <div>
+                  <h4 className="font-semibold text-xs sm:text-sm mb-3 sm:mb-4 text-gray-700">Practice Areas</h4>
+                  <ul className="space-y-1 sm:space-y-2">
+                    {practiceAreas.map((area, index) => (
+                      <li key={index}>
+                        <a href="#" className="text-xs sm:text-sm text-gray-500 hover:text-gray-700 transition-colors">
+                          {area}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-            {/* Quick Links */}
-            <div className="sm:col-span-1">
-              <h4 className="font-semibold text-xs sm:text-sm mb-3 sm:mb-4 text-gray-700">Quick Links</h4>
-              <ul className="space-y-1 sm:space-y-2">
-                {quickLinks.map((link, index) => (
-                  <li key={index}>
-                    <a href="#" className="text-xs sm:text-sm text-gray-500 hover:text-gray-700 transition-colors">
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+                {/* Quick Links */}
+                <div>
+                  <h4 className="font-semibold text-xs sm:text-sm mb-3 sm:mb-4 text-gray-700">Quick Links</h4>
+                  <ul className="space-y-1 sm:space-y-2">
+                    {quickLinks.map((link, index) => (
+                      <li key={index}>
+                        <a href="#" className="text-xs sm:text-sm text-gray-500 hover:text-gray-700 transition-colors">
+                          {link}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </div>
 
             {/* Contact Info */}
