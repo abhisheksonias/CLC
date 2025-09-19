@@ -4,10 +4,13 @@ import Header from "@/components/Header";
 import LeftSidebar from "@/components/LeftSidebar";
 import RightSidebar from "@/components/RightSidebar";
 import Footer from "@/components/Footer";
+import { useBlogPost } from "@/hooks/useSanityData";
+import { SanityContentRenderer } from "@/lib/sanityContent";
+import { urlFor } from "@/lib/sanity";
+import { format } from "date-fns";
 
-type BlogKey = "interim-relief-tds-prosecution" | "nclt-operational-debt-cirp" | "ncdrc-fire-insurance-oversight" | "delhi-hc-gst-fresh-hearing";
-
-const blogContent: Record<BlogKey, { title: string; body: JSX.Element }> = {
+// Fallback content for when Sanity data is not available
+const fallbackContent = {
   "interim-relief-tds-prosecution": {
     title: "Interim Relief Granted in TDS Prosecution: A Notable Decision by Allahabad High Court",
     body: (
@@ -206,9 +209,45 @@ const blogContent: Record<BlogKey, { title: string; body: JSX.Element }> = {
 };
 
 const Blog = () => {
-  const { slug } = useParams<{ slug: BlogKey }>();
+  const { slug } = useParams<{ slug: string }>();
+  const { data: blogPost, isLoading, error } = useBlogPost(slug || '');
 
-  if (!slug || !blogContent[slug]) {
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen">
+        <div className="max-w-7xl bg-slate-900/40 mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <Header />
+          <div className="flex flex-col lg:flex-row gap-4">
+            <div className="hidden lg:block lg:w-48 xl:w-52">
+              <LeftSidebar activeSection="insights" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="bg-white/95 backdrop-blur-sm p-8">
+                <div className="max-w-4xl">
+                  <div className="animate-pulse">
+                    <div className="h-8 bg-gray-300 rounded mb-6"></div>
+                    <div className="space-y-4">
+                      <div className="h-4 bg-gray-300 rounded"></div>
+                      <div className="h-4 bg-gray-300 rounded w-5/6"></div>
+                      <div className="h-4 bg-gray-300 rounded w-4/6"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="hidden lg:block lg:w-60 xl:w-64">
+              <RightSidebar />
+            </div>
+          </div>
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+
+  // Error state or article not found
+  if (error || !blogPost) {
     return (
       <div className="min-h-screen">
         <div className="max-w-7xl bg-slate-900/40 mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -235,8 +274,6 @@ const Blog = () => {
     );
   }
 
-  const { title, body } = blogContent[slug];
-
   return (
     <div className="min-h-screen">
       <div className="max-w-7xl bg-slate-900/40 mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -250,10 +287,33 @@ const Blog = () => {
           <div className="flex-1 min-w-0">
             <div className="bg-white/95 backdrop-blur-sm p-8">
               <div className="max-w-4xl">
-                <h1 className="text-3xl lg:text-4xl font-light text-gray-800 mb-6">{title}</h1>
-                <div className="prose max-w-none prose-p:leading-relaxed">
-                  {body}
-                </div>
+                <h1 className="text-3xl lg:text-4xl font-light text-gray-800 mb-6">{blogPost.title}</h1>
+                
+                {/* Featured Image */}
+                {blogPost.featuredImage && (
+                  <div className="mb-8">
+                    <img
+                      src={urlFor(blogPost.featuredImage).width(800).height(400).fit('crop').url()}
+                      alt={blogPost.featuredImage.alt || blogPost.title}
+                      className="w-full h-auto rounded-lg shadow-md"
+                    />
+                  </div>
+                )}
+                
+                {/* Content */}
+                <SanityContentRenderer content={blogPost.content} />
+                
+                {/* Download Button */}
+                {blogPost.downloadUrl && (
+                  <div className="flex items-center gap-3 mt-8">
+                    <span>Read the full order here: Order (Give Download Button)</span>
+                    <Button variant="outline" asChild>
+                      <a href={blogPost.downloadUrl} target="_blank" rel="noopener noreferrer">
+                        Download
+                      </a>
+                    </Button>
+                  </div>
+                )}
               </div>
             </div>
           </div>

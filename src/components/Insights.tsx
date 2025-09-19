@@ -1,50 +1,26 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Download, Eye, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useBlogPosts, useCategories } from "@/hooks/useSanityData";
+import { urlFor } from "@/lib/sanity";
+import { format } from "date-fns";
+import { useState } from "react";
 
 const Insights = () => {
-  const blogs = [
-    {
-      slug: "interim-relief-tds-prosecution",
-      title: "Interim Relief Granted in TDS Prosecution: A Notable Decision by Allahabad High Court",
-      excerpt: "The Hon'ble High Court of Allahabad has granted interim relief to two applicants in a case concerning delayed deposit of Tax Deducted at Source (TDS). The decision is noteworthy for its interpretation of Section 276B of the Income Tax Act.",
-      date: "July 9, 2025",
-      category: "Tax Litigation",
-      readTime: "5 min read",
-      isNew: true
-    },
-    {
-      slug: "nclt-operational-debt-cirp",
-      title: "NCLT Admits Insolvency Petition for Default in Operational Debt",
-      excerpt: "A petition under Section 9 of the Insolvency and Bankruptcy Code, 2016 was filed seeking initiation of the Corporate Insolvency Resolution Process (CIRP) against a corporate debtor for default in repayment of operational dues amounting to over ₹11 crore.",
-      date: "June 15, 2025",
-      category: "Insolvency Law",
-      readTime: "4 min read",
-      isNew: true
-    },
-    {
-      slug: "ncdrc-fire-insurance-oversight",
-      title: "NCDRC Holds Insurer Liable for Own Oversight in Fire Insurance Claim",
-      excerpt: "In a landmark ruling that underscores the importance of insurer accountability and service diligence, the National Consumer Disputes Redressal Commission (NCDRC) has held Oriental Insurance Company Ltd. liable for wrongfully repudiating an insurance claim.",
-      date: "February 13, 2025",
-      category: "Consumer Law",
-      readTime: "6 min read",
-      isNew: false
-    },
-    {
-      slug: "delhi-hc-gst-fresh-hearing",
-      title: "Delhi High Court Grants Fresh Hearing to GST Defaulter Amidst Pending SC Verdict",
-      excerpt: "In a recent ruling with implications for taxpayers grappling with procedural lapses and legal uncertainties, the Delhi High Court has granted a fresh hearing to M/s Jinender Paper Mart, whose GST registration was suspended and subsequently cancelled.",
-      date: "July 10, 2025",
-      category: "GST Law",
-      readTime: "5 min read",
-      isNew: true
-    }
-  ];
+  const { data: blogs = [], isLoading: blogsLoading } = useBlogPosts();
+  const { data: categories = [] } = useCategories();
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const categories = ["All", "Tax Litigation", "GST Law", "Insolvency Law", "Consumer Law"];
+  // Filter blogs by selected category
+  const filteredBlogs = selectedCategory === "All" 
+    ? blogs 
+    : blogs.filter(blog => blog.category?.name === selectedCategory);
+
+  // Create category list for filter buttons
+  const categoryList = ["All", ...categories.map(cat => cat.name)];
 
   return (
     <section id="insights" className="py-10 bg-white/95 backdrop-blur-sm">
@@ -63,26 +39,51 @@ const Insights = () => {
 
         {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-2 mb-12">
-          {categories.map((category) => (
+          {categoryList.map((category) => (
             <Button
               key={category}
-              variant={category === "All" ? "default" : "outline"}
+              variant={category === selectedCategory ? "default" : "outline"}
               size="sm"
               className="mb-2"
+              onClick={() => setSelectedCategory(category)}
             >
               {category}
             </Button>
           ))}
         </div>
 
+        {/* Loading State */}
+        {blogsLoading && (
+          <div className="grid lg:grid-cols-2 gap-8 mb-12">
+            {[1, 2, 3, 4].map((i) => (
+              <Card key={i} className="shadow-card">
+                <CardHeader>
+                  <div className="animate-pulse">
+                    <div className="h-4 bg-gray-300 rounded w-1/4 mb-4"></div>
+                    <div className="h-6 bg-gray-300 rounded mb-4"></div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="animate-pulse space-y-3">
+                    <div className="h-4 bg-gray-300 rounded"></div>
+                    <div className="h-4 bg-gray-300 rounded w-5/6"></div>
+                    <div className="h-4 bg-gray-300 rounded w-4/6"></div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        )}
+
         {/* Blog Grid */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-12">
-          {blogs.map((blog, index) => (
-            <Card key={index} className="shadow-card hover:shadow-elegant transition-all duration-300">
+        {!blogsLoading && (
+          <div className="grid lg:grid-cols-2 gap-8 mb-12">
+            {filteredBlogs.map((blog, index) => (
+            <Card key={blog._id} className="shadow-card hover:shadow-elegant transition-all duration-300">
               <CardHeader>
                 <div className="flex items-start justify-between mb-4">
                   <Badge variant="outline" className="text-xs">
-                    {blog.category}
+                    {blog.category?.name || 'Uncategorized'}
                   </Badge>
                   {blog.isNew && (
                     <Badge variant="secondary" className="text-xs">
@@ -91,7 +92,7 @@ const Insights = () => {
                   )}
                 </div>
                 <CardTitle className="text-xl leading-tight hover:text-primary transition-colors">
-                  <Link to={`/blog/${blog.slug}`} className="cursor-pointer">
+                  <Link to={`/blog/${blog.slug.current}`} className="cursor-pointer">
                     {blog.title}
                   </Link>
                 </CardTitle>
@@ -105,7 +106,7 @@ const Insights = () => {
                 <div className="flex items-center justify-between text-sm text-muted-foreground mb-6">
                   <div className="flex items-center gap-2">
                     <Calendar className="h-4 w-4" />
-                    <span>{blog.date}</span>
+                    <span>{format(new Date(blog.publishedAt), 'MMMM d, yyyy')}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Eye className="h-4 w-4" />
@@ -114,20 +115,25 @@ const Insights = () => {
                 </div>
                 
                 <div className="flex gap-3">
-                  <Link to={`/blog/${blog.slug}`} className="flex-1">
+                  <Link to={`/blog/${blog.slug.current}`} className="flex-1">
                     <Button variant="outline" size="sm" className="w-full">
                       <Eye className="mr-2 h-4 w-4" />
                       Read Article
                     </Button>
                   </Link>
-                  <Button variant="outline" size="sm">
-                    <Download className="h-4 w-4" />
-                  </Button>
+                  {blog.downloadUrl && (
+                    <Button variant="outline" size="sm" asChild>
+                      <a href={blog.downloadUrl} target="_blank" rel="noopener noreferrer">
+                        <Download className="h-4 w-4" />
+                      </a>
+                    </Button>
+                  )}
                 </div>
               </CardContent>
             </Card>
           ))}
-        </div>
+          </div>
+        )}
 
         {/* Newsletter Section */}
         <Card className="bg-accent border-2 border-dashed border-primary/20">

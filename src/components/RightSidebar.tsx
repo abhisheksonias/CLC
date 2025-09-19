@@ -1,4 +1,20 @@
+import { useFeaturedNewsUpdates } from "@/hooks/useSanityData";
+import { format } from "date-fns";
+import { Link } from "react-router-dom";
+
 const RightSidebar = () => {
+  const { data: featuredNews = [], isLoading } = useFeaturedNewsUpdates();
+
+  const getTypeDisplayName = (type: string) => {
+    switch (type) {
+      case "case-update": return "Case Update";
+      case "news": return "News";
+      case "publication": return "Publication";
+      case "deal-corner": return "Deal Corner";
+      default: return type;
+    }
+  };
+
   return (
     <div className="right-sidebar w-full lg:w-auto bg-white border-l border-gray-200 sticky top-0 self-start">
       {/* Search */}
@@ -31,18 +47,32 @@ const RightSidebar = () => {
           <h3 className="text-sm font-semibold text-red-600">WHAT'S NEW</h3>
         </div>
         <div className="p-4 space-y-4">
-          <div>
-            <h4 className="text-sm font-semibold text-gray-800 mb-1">
-              CLC Advises on the Formation of the India Deep Tech Investment Alliance (IDTA) with $1 Billion Commitments
-            </h4>
-            <p className="text-xs text-gray-500">Deal Corner · September 02 2025</p>
-          </div>
-          <div>
-            <h4 className="text-sm font-semibold text-gray-800 mb-1">
-              Decoding Downstream Investment
-            </h4>
-            <p className="text-xs text-gray-500">New Publication · August 28 2025</p>
-          </div>
+          {isLoading ? (
+            // Loading skeleton
+            <>
+              <div className="animate-pulse">
+                <div className="h-4 bg-gray-300 rounded mb-2"></div>
+                <div className="h-3 bg-gray-300 rounded w-3/4"></div>
+              </div>
+              <div className="animate-pulse">
+                <div className="h-4 bg-gray-300 rounded mb-2"></div>
+                <div className="h-3 bg-gray-300 rounded w-3/4"></div>
+              </div>
+            </>
+          ) : (
+            featuredNews.map((news) => (
+              <div key={news._id}>
+                <Link to={`/news/${news.slug.current}`} className="hover:text-primary transition-colors">
+                  <h4 className="text-sm font-semibold text-gray-800 mb-1">
+                    {news.title}
+                  </h4>
+                  <p className="text-xs text-gray-500">
+                    {getTypeDisplayName(news.type)} · {format(new Date(news.publishedAt), 'MMM dd yyyy')}
+                  </p>
+                </Link>
+              </div>
+            ))
+          )}
         </div>
       </div>
 
