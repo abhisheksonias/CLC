@@ -1,8 +1,4 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Building2, Users, Gavel, TrendingUp, Scale, Shield, Award, BookOpen, Target, Globe, CheckCircle, MapPin, Phone, Mail, Heart, Eye, Lightbulb } from "lucide-react";
-import TeamMember, { teamMembers } from "./TeamMember";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Building2, Users, Gavel, Scale, Shield, BookOpen, Globe, Heart, Eye, Lightbulb } from "lucide-react";
 
 const About = () => {
   const stats = [
@@ -12,7 +8,6 @@ const About = () => {
     { icon: Gavel, label: "States", value: "All Capitals" },
   ];
 
-  // Team members are imported from TeamMember component
 
   const approaches = [
     {
@@ -114,19 +109,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Our Team Section */}
-      <section className="p-8 mb-8 border-t border-gray-200">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold poppins text-gray-800 mb-2">Meet Our Team</h2>
-          <p className="text-gray-600">The experienced professionals leading our firm</p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {Object.values(teamMembers).map((member) => (
-            <TeamMember key={member.id} member={member} />
-          ))}
-        </div>
-      </section>
 
       {/* Our Approach Section */}
       <section className="p-8 mb-8 border-t border-gray-200">

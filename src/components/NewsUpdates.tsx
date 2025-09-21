@@ -86,7 +86,7 @@ const NewsUpdates = () => {
         {!isLoading && (
           <div className="grid lg:grid-cols-2 gap-8 mb-12">
             {filteredNews.map((news) => (
-              <Card key={news._id} className="shadow-card hover:shadow-elegant transition-all duration-300">
+              <Card key={news._id} className="shadow-card hover:shadow-elegant transition-all duration-300 flex flex-col h-full">
                 <CardHeader>
                   <div className="flex items-start justify-between mb-4">
                     <Badge variant="outline" className="text-xs">
@@ -105,8 +105,8 @@ const NewsUpdates = () => {
                   </CardTitle>
                 </CardHeader>
                 
-                <CardContent>
-                  <p className="text-muted-foreground leading-relaxed mb-6">
+                <CardContent className="flex flex-col flex-grow">
+                  <p className="text-muted-foreground leading-relaxed mb-6 flex-grow">
                     {news.excerpt}
                   </p>
                   
@@ -121,19 +121,21 @@ const NewsUpdates = () => {
                     </div>
                   </div>
                   
-                  <div className="flex gap-3">
+                  <div className="flex gap-3 mt-auto">
                     <Link to={`/news/${news.slug.current}`} className="flex-1">
                       <Button variant="outline" size="sm" className="w-full">
                         <Eye className="mr-2 h-4 w-4" />
                         Read More
                       </Button>
                     </Link>
-                    {news.downloadUrl && (
+                    {news.downloadUrl ? (
                       <Button variant="outline" size="sm" asChild>
                         <a href={news.downloadUrl} target="_blank" rel="noopener noreferrer">
                           <Download className="h-4 w-4" />
                         </a>
                       </Button>
+                    ) : (
+                      <div className="w-10"></div>
                     )}
                   </div>
                 </CardContent>

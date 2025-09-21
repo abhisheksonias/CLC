@@ -136,3 +136,18 @@ export interface NewsUpdatePreview {
   featuredImage?: SanityImage
   downloadUrl?: string
 }
+
+export interface SearchResult {
+  _id: string
+  _type: 'blogPost' | 'newsUpdate'
+  title: string
+  slug: {
+    current: string
+  }
+  excerpt: string
+  publishedAt: string
+  readTime: string
+  isNew: boolean
+  type?: 'case-update' | 'news' | 'publication' | 'deal-corner'
+  category?: Category
+}

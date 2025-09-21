@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import LeftSidebar from "@/components/LeftSidebar";
@@ -7,9 +7,11 @@ import Footer from "@/components/Footer";
 import { useNewsUpdate } from "@/hooks/useSanityData";
 import { SanityContentRenderer } from "@/lib/sanityContent";
 import { urlFor } from "@/lib/sanity";
+import { ArrowLeft } from "lucide-react";
 
 const News = () => {
   const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
   const { data: newsUpdate, isLoading, error } = useNewsUpdate(slug || '');
 
   // Loading state
@@ -94,15 +96,27 @@ const News = () => {
             <LeftSidebar activeSection="insights" />
           </div>
           {/* Main Content */}
-          <div className="flex-1 min-w-0">
-            <div className="bg-white/95 backdrop-blur-sm p-8">
-              <div className="max-w-4xl">
-                <div className="mb-4">
-                  <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
-                    {getTypeDisplayName(newsUpdate.type)}
-                  </span>
-                </div>
-                <h1 className="text-3xl lg:text-4xl font-light text-gray-800 mb-6">{newsUpdate.title}</h1>
+            <div className="flex-1 min-w-0">
+              <div className="bg-white/95 backdrop-blur-sm p-8">
+                <div className="max-w-4xl">
+                  {/* Back Navigation */}
+                  <div className="mb-6">
+                    <Button
+                      variant="ghost"
+                      onClick={() => navigate(-1)}
+                      className="flex items-center gap-2 text-gray-600 hover:text-gray-800 p-0 h-auto"
+                    >
+                      <ArrowLeft className="h-4 w-4" />
+                      Back to Previous Page
+                    </Button>
+                  </div>
+                  
+                  <div className="mb-4">
+                    <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
+                      {getTypeDisplayName(newsUpdate.type)}
+                    </span>
+                  </div>
+                  <h1 className="text-3xl lg:text-4xl font-light text-gray-800 mb-6">{newsUpdate.title}</h1>
                 
                 {/* Featured Image */}
                 {newsUpdate.featuredImage && (

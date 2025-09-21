@@ -47,14 +47,6 @@ const MainContent = () => {
         </div>
       </div>
 
-      {/* Team photos placeholder */}
-      <div className="grid grid-cols-3 gap-4 mb-6">
-        {[1, 2, 3, 4, 5, 6].map((i) => (
-          <div key={i} className="bg-gray-200 aspect-square rounded-lg flex items-center justify-center">
-            <span className="text-gray-500 text-sm">Team Member {i}</span>
-          </div>
-        ))}
-      </div>
 
       {/* Commercial Law Chamber info */}
       <div className="flex items-center text-sm text-gray-600">
@@ -93,7 +85,7 @@ const MainContent = () => {
         ) : (
           <div className="grid lg:grid-cols-2 gap-8 mb-12">
             {newsOnly.map((item) => (
-              <Card key={item._id} className="shadow-card hover:shadow-elegant transition-all duration-300">
+              <Card key={item._id} className="shadow-card hover:shadow-elegant transition-all duration-300 flex flex-col h-full">
                 <CardHeader>
                   <CardTitle className="text-xl leading-tight hover:text-primary transition-colors">
                     <Link to={`/news/${item.slug.current}`} className="cursor-pointer">
@@ -101,7 +93,7 @@ const MainContent = () => {
                     </Link>
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="flex flex-col flex-grow">
                   <div className="flex items-center justify-between text-sm text-muted-foreground mb-6">
                     <div className="flex items-center gap-2">
                       <Calendar className="h-4 w-4" />
@@ -112,18 +104,20 @@ const MainContent = () => {
                       <span>{item.readTime}</span>
                     </div>
                   </div>
-                  <div className="flex gap-3">
+                  <div className="flex gap-3 mt-auto">
                     <Link to={`/news/${item.slug.current}`} className="flex-1">
                       <Button variant="outline" size="sm" className="w-full">
                         Read More
                       </Button>
                     </Link>
-                    {item.downloadUrl && (
+                    {item.downloadUrl ? (
                       <Button variant="outline" size="sm" asChild>
                         <a href={item.downloadUrl} target="_blank" rel="noopener noreferrer">
                           <Download className="h-4 w-4" />
                         </a>
                       </Button>
+                    ) : (
+                      <div className="w-10"></div>
                     )}
                   </div>
                 </CardContent>
@@ -160,7 +154,7 @@ const MainContent = () => {
         ) : (
           <div className="grid lg:grid-cols-2 gap-8 mb-12">
             {caseOnly.map((item) => (
-              <Card key={item._id} className="shadow-card hover:shadow-elegant transition-all duration-300">
+              <Card key={item._id} className="shadow-card hover:shadow-elegant transition-all duration-300 flex flex-col h-full">
                 <CardHeader>
                   <CardTitle className="text-xl leading-tight hover:text-primary transition-colors">
                     <Link to={`/news/${item.slug.current}`} className="cursor-pointer">
@@ -168,7 +162,7 @@ const MainContent = () => {
                     </Link>
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="flex flex-col flex-grow">
                   <div className="flex items-center justify-between text-sm text-muted-foreground mb-6">
                     <div className="flex items-center gap-2">
                       <Calendar className="h-4 w-4" />
@@ -179,18 +173,20 @@ const MainContent = () => {
                       <span>{item.readTime}</span>
                     </div>
                   </div>
-                  <div className="flex gap-3">
+                  <div className="flex gap-3 mt-auto">
                     <Link to={`/news/${item.slug.current}`} className="flex-1">
                       <Button variant="outline" size="sm" className="w-full">
                         Read More
                       </Button>
                     </Link>
-                    {item.downloadUrl && (
+                    {item.downloadUrl ? (
                       <Button variant="outline" size="sm" asChild>
                         <a href={item.downloadUrl} target="_blank" rel="noopener noreferrer">
                           <Download className="h-4 w-4" />
                         </a>
                       </Button>
+                    ) : (
+                      <div className="w-10"></div>
                     )}
                   </div>
                 </CardContent>

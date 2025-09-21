@@ -79,7 +79,7 @@ const Insights = () => {
         {!blogsLoading && (
           <div className="grid lg:grid-cols-2 gap-8 mb-12">
             {filteredBlogs.map((blog, index) => (
-            <Card key={blog._id} className="shadow-card hover:shadow-elegant transition-all duration-300">
+            <Card key={blog._id} className="shadow-card hover:shadow-elegant transition-all duration-300 flex flex-col h-full">
               <CardHeader>
                 <div className="flex items-start justify-between mb-4">
                   <Badge variant="outline" className="text-xs">
@@ -98,8 +98,8 @@ const Insights = () => {
                 </CardTitle>
               </CardHeader>
               
-              <CardContent>
-                <p className="text-muted-foreground leading-relaxed mb-6">
+              <CardContent className="flex flex-col flex-grow">
+                <p className="text-muted-foreground leading-relaxed mb-6 flex-grow">
                   {blog.excerpt}
                 </p>
                 
@@ -114,19 +114,21 @@ const Insights = () => {
                   </div>
                 </div>
                 
-                <div className="flex gap-3">
+                <div className="flex gap-3 mt-auto">
                   <Link to={`/blog/${blog.slug.current}`} className="flex-1">
                     <Button variant="outline" size="sm" className="w-full">
                       <Eye className="mr-2 h-4 w-4" />
                       Read Article
                     </Button>
                   </Link>
-                  {blog.downloadUrl && (
+                  {blog.downloadUrl ? (
                     <Button variant="outline" size="sm" asChild>
                       <a href={blog.downloadUrl} target="_blank" rel="noopener noreferrer">
                         <Download className="h-4 w-4" />
                       </a>
                     </Button>
+                  ) : (
+                    <div className="w-10"></div>
                   )}
                 </div>
               </CardContent>

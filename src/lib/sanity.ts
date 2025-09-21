@@ -118,5 +118,23 @@ export const queries = {
     readTime,
     isNew,
     featuredImage
+  }`,
+  
+  // Search queries
+  searchArticles: `*[_type in ["blogPost", "newsUpdate"] && (title match $query || excerpt match $query || content match $query)] | order(publishedAt desc) {
+    _id,
+    _type,
+    title,
+    slug,
+    excerpt,
+    publishedAt,
+    readTime,
+    isNew,
+    type,
+    category->{
+      name,
+      slug,
+      color
+    }
   }`
 }
