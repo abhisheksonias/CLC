@@ -137,4 +137,16 @@ export const queries = {
       color
     }
   }`
+  ,
+  // Career openings
+  getCareerOpenings: `*[_type == "careerOpening" && isActive == true] | order(sortOrder asc, _createdAt desc) {
+    _id,
+    title,
+    location,
+    type,
+    experience,
+    requirements,
+    sortOrder,
+    isActive
+  }`
 }

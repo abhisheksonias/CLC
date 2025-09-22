@@ -151,3 +151,14 @@ export interface SearchResult {
   type?: 'case-update' | 'news' | 'publication' | 'deal-corner'
   category?: Category
 }
+
+export interface CareerOpening {
+  _id: string
+  title: string
+  location: string
+  type: string
+  experience: string
+  requirements: string[]
+  sortOrder?: number
+  isActive?: boolean
+}

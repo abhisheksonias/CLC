@@ -1,45 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Briefcase, Users, GraduationCap, Clock, MapPin, Building2, CheckCircle } from "lucide-react";
+import { useCareerOpenings } from "@/hooks/useSanityData";
 
 const Career = () => {
-  const currentOpenings = [
-    {
-      title: "Senior Tax Counsel",
-      location: "New Delhi",
-      type: "Full-time",
-      experience: "8-12 years",
-      requirements: [
-        "LLB from a recognized university",
-        "Extensive experience in direct and indirect tax litigation",
-        "Strong research and analytical skills",
-        "Experience in Supreme Court appearances preferred"
-      ]
-    },
-    {
-      title: "Associate - Commercial Litigation",
-      location: "Mumbai",
-      type: "Full-time",
-      experience: "3-5 years",
-      requirements: [
-        "LLB with focus on commercial law",
-        "Experience in handling commercial disputes",
-        "Strong drafting skills",
-        "Knowledge of arbitration law"
-      ]
-    },
-    {
-      title: "Legal Research Associate",
-      location: "Bengaluru",
-      type: "Full-time",
-      experience: "1-3 years",
-      requirements: [
-        "LLB with excellent academic record",
-        "Strong legal research capabilities",
-        "Good writing and analytical skills",
-        "Knowledge of tax laws preferred"
-      ]
-    }
-  ];
+  const { data: currentOpenings, isLoading, isError } = useCareerOpenings();
 
   const whyJoinUs = [
     {
@@ -101,8 +65,14 @@ const Career = () => {
         </div>
 
         <div className="grid grid-cols-1 gap-6">
-          {currentOpenings.map((job, index) => (
-            <div key={index} className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+          {isLoading && (
+            <div className="text-center text-gray-600">Loading openings...</div>
+          )}
+          {!isLoading && (isError || !currentOpenings || currentOpenings.length === 0) && (
+            <div className="text-center text-gray-600">No current openings.</div>
+          )}
+          {!isLoading && currentOpenings && currentOpenings.map((job, index) => (
+            <div key={job._id ?? index} className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                 <div>
                   <h3 className="text-xl font-semibold text-gray-800 mb-2">{job.title}</h3>
@@ -128,8 +98,8 @@ const Career = () => {
               <div className="space-y-2">
                 <h4 className="font-semibold text-gray-700">Requirements:</h4>
                 <ul className="space-y-2">
-                  {job.requirements.map((req, reqIndex) => (
-                    <li key={reqIndex} className="flex items-start">
+                  {job.requirements?.map((req, reqIndex) => (
+                    <li key={`${job._id}-req-${reqIndex}`} className="flex items-start">
                       <CheckCircle className="h-5 w-5 text-primary mr-2 mt-0.5" />
                       <span className="text-gray-600">{req}</span>
                     </li>

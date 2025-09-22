@@ -12,10 +12,22 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState("home");
+  const location = useLocation();
+
+  useEffect(() => {
+    const hash = location.hash.replace('#', '');
+    const allowed = ["about", "team", "insights", "content", "contact", "career", "expertise", "home"]; 
+    if (hash && allowed.includes(hash)) {
+      setActiveSection(hash);
+      // scroll top for better UX when navigating via footer
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [location.hash]);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
   const renderMainContent = () => {

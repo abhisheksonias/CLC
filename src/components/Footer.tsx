@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Scale, Mail, Phone, MapPin, Linkedin, Twitter, Instagram } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const practiceAreas = [
@@ -12,13 +13,13 @@ const Footer = () => {
     "International Tax"
   ];
 
-  const quickLinks = [
-    "About Us",
-    "Our Team",
-    "Case Studies",
-    "Legal Updates",
-    "Contact",
-    "Careers"
+  const quickLinks: { label: string; to: string }[] = [
+    { label: "About Us", to: "/#about" },
+    { label: "Our Team", to: "/#team" },
+    { label: "Case Studies", to: "/#insights" },
+    { label: "Legal Updates", to: "/#content" },
+    { label: "Contact", to: "/#contact" },
+    { label: "Careers", to: "/#career" },
   ];
 
   return (
@@ -72,11 +73,11 @@ const Footer = () => {
                 <div>
                   <h4 className="font-semibold text-xs sm:text-sm mb-3 sm:mb-4 text-gray-700">Quick Links</h4>
                   <ul className="space-y-1 sm:space-y-2">
-                    {quickLinks.map((link, index) => (
+                    {quickLinks.map((item, index) => (
                       <li key={index}>
-                        <a href="#" className="text-xs sm:text-sm text-gray-500 hover:text-gray-700 transition-colors">
-                          {link}
-                        </a>
+                        <Link to={item.to} className="text-xs sm:text-sm text-gray-500 hover:text-gray-700 transition-colors">
+                          {item.label}
+                        </Link>
                       </li>
                     ))}
                   </ul>

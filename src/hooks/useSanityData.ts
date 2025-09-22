@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { client, queries } from '@/lib/sanity'
-import type { BlogPost, BlogPostPreview, NewsUpdate, NewsUpdatePreview, Category, SearchResult } from '@/types/sanity'
+import type { BlogPost, BlogPostPreview, NewsUpdate, NewsUpdatePreview, Category, SearchResult, CareerOpening } from '@/types/sanity'
 
 // Blog post hooks
 export function useBlogPosts() {
@@ -62,5 +62,13 @@ export function useSearchArticles(query: string) {
     queryKey: ['searchArticles', query],
     queryFn: () => client.fetch(queries.searchArticles, { query: `*${query}*` }),
     enabled: !!query && query.length > 2,
+  })
+}
+
+// Career openings hooks
+export function useCareerOpenings() {
+  return useQuery<CareerOpening[]>({
+    queryKey: ['careerOpenings'],
+    queryFn: () => client.fetch(queries.getCareerOpenings),
   })
 }

@@ -135,7 +135,7 @@ const News = () => {
                 {/* Download Button */}
                 {newsUpdate.downloadUrl && (
                   <div className="flex items-center gap-3 mt-8">
-                    <span>Read the complete document here: Document (Give Download Button)</span>
+                    <span className="font-semibold">Read The Full Document Here </span>
                     <Button variant="outline" asChild>
                       <a href={newsUpdate.downloadUrl} target="_blank" rel="noopener noreferrer">
                         Download

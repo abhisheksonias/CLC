@@ -320,7 +320,7 @@ const Blog = () => {
                 {/* Download Button */}
                 {blogPost.downloadUrl && (
                   <div className="flex items-center gap-3 mt-8">
-                    <span>Read the full order here: Order (Give Download Button)</span>
+                    <span className="font-semibold">Read The Full Document Here </span>
                     <Button variant="outline" asChild>
                       <a href={blogPost.downloadUrl} target="_blank" rel="noopener noreferrer">
                         Download
