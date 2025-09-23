@@ -21,11 +21,20 @@ const Index = () => {
 
   useEffect(() => {
     const hash = location.hash.replace('#', '');
-    const allowed = ["about", "team", "insights", "content", "contact", "career", "expertise", "home"]; 
+    const allowed = ["about", "team", "insights", "content", "contact", "career", "expertise", "home", "news-updates"]; 
     if (hash && allowed.includes(hash)) {
-      setActiveSection(hash);
+      // Map hash to section key used by renderer
+      const section = hash === 'news-updates' ? 'content' : hash;
+      setActiveSection(section);
       // scroll top for better UX when navigating via footer
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      // attempt to scroll into the anchor after render
+      setTimeout(() => {
+        const el = document.getElementById(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 0);
     }
   }, [location.hash]);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);

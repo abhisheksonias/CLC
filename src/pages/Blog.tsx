@@ -293,7 +293,14 @@ const Blog = () => {
                 <div className="mb-6">
                   <Button
                     variant="ghost"
-                    onClick={() => navigate(-1)}
+                    onClick={() => {
+                      const cameFromSameSite = document.referrer && new URL(document.referrer).origin === window.location.origin;
+                      if (window.history.length > 1 && cameFromSameSite) {
+                        navigate(-1);
+                      } else {
+                        navigate('/#insights');
+                      }
+                    }}
                     className="flex items-center gap-2 text-gray-600 hover:text-gray-800 p-0 h-auto"
                   >
                     <ArrowLeft className="h-4 w-4" />

@@ -59,7 +59,7 @@ const MainContent = () => {
       </div>
 
       {/* News & Case Updates (card grid style similar to Insights) */}
-      <div className="mt-10">
+      <div id="news-updates" className="mt-10">
         {/* News Updates */}
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">News Updates</h2>
         {isLoading ? (
