@@ -18,8 +18,7 @@ const Contact = () => {
       icon: Phone,
       title: "Phone",
       details: [
-        "+91 XXX-XXX-XXXX",
-        "+91 XXX-XXX-XXXX",
+        "+91 99999 20118",
         "24/7 Emergency Legal Support"
       ]
     },
@@ -27,8 +26,7 @@ const Contact = () => {
       icon: Mail,
       title: "Email",
       details: [
-        "info@commerciallawchamber.com",
-        "partners@commerciallawchamber.com",
+        "vivek.sarin@clclaw.in",
         "Quick response within 24 hours"
       ]
     },
