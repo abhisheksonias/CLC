@@ -1,4 +1,4 @@
-import { Building2, Users, Gavel, Scale, Shield, BookOpen, Globe, Heart, Eye, Lightbulb } from "lucide-react";
+import { Building2, Users, Gavel, Scale, Shield, BookOpen, Globe, Handshake, Eye, Lightbulb } from "lucide-react";
 
 const About = () => {
   const stats = [
@@ -34,7 +34,7 @@ const About = () => {
 
   const values = [
     {
-      icon: Heart,
+      icon: Handshake,
       title: "Integrity",
       description: "Unwavering commitment to ethical standards and professional conduct"
     },
@@ -64,7 +64,7 @@ const About = () => {
             About Commercial Law Chamber
           </h1>
           <p className="text-xl text-gray-600 mb-6">
-            Strategic Legal Excellence in Tax and Commercial Disputes Since 2008
+            Strategic Legal Excellence in Tax and Commercial Disputes
           </p>
         </div>
 

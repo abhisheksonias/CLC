@@ -15,7 +15,7 @@ const Hero = () => {
     },
     {
       icon: Building,
-      title: "Regulatory Matters",
+      title: "Regulatory Disputes",
       description: "Corporate compliance and regulatory advisory"
     },
     {
@@ -54,7 +54,7 @@ const Hero = () => {
       <section className="relative p-4 sm:p-6 md:p-8">
         <div className="text-center mb-6 sm:mb-8">
           <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl poppins text-gray-600 font-bold mb-4 sm:mb-6 px-2">
-            Leading Legal Excellence in Tax & Commercial Disputes Since 2008
+            Leading Legal Excellence in Tax & Commercial Disputes
           </h1>
           <div className="poppins flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
             <Button
@@ -153,6 +153,37 @@ const Hero = () => {
           ))}
         </div>
       </section>
+      <section className="p-4 sm:p-6 md:p-8 border-t border-gray-200">
+        <div className="text-center mb-4 sm:mb-6">
+          <h2 className="text-xl sm:text-2xl font-bold poppins text-gray-800 mb-2">Our Team</h2>
+          <p className="text-sm sm:text-base text-gray-600 px-2">Meet our experienced legal professionals</p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+          {[
+            { name: "Vivek Sarin", designation: "Partner", image: "./vivek.jpg" },
+            { name: "Vimal Kumar", designation: "Partner", image: "./vimal.jpg" },
+            { name: "Shreyas Srivastava", designation: "Partner", image: "./shreya.jpg" },
+          ].map((member, index) => (
+            <div key={index} className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+              <div className="aspect-square bg-gray-200">
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.src = 'https://via.placeholder.com/300x300?text=' + member.name;
+                  }}
+                />
+              </div>
+              <div className="p-4 text-center">
+                <h3 className="font-semibold text-gray-800 text-base mb-1">{member.name}</h3>
+                <p className="text-sm text-gray-600">{member.designation}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Why Choose CLC */}
       <section className="p-4 sm:p-6 md:p-8 border-t border-gray-200">
@@ -179,7 +210,7 @@ const Hero = () => {
 
         <div className="mt-6 sm:mt-8 poppins bg-white border border-gray-200 rounded-lg p-4 sm:p-6">
           <div className="text-center">
-            <h3 className="font-semibold text-gray-800 mb-2 text-sm sm:text-base">Legal Excellence Since 2008</h3>
+            <h3 className="font-semibold text-gray-800 mb-2 text-sm sm:text-base">Legal Excellence</h3>
             <p className="text-gray-600 text-xs sm:text-sm mb-4">
               Trusted by corporations and individuals across India for strategic legal solutions
             </p>
@@ -204,6 +235,9 @@ const Hero = () => {
           </div>
         </div>
       </section>
+
+      
+      
     </div>
   );
 };

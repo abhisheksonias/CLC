@@ -58,7 +58,7 @@ const Career = () => {
       </section>
 
       {/* Current Openings Section */}
-      <section className="p-8 mb-8 border-t poppins border-gray-200">
+      {/* <section className="p-8 mb-8 border-t poppins border-gray-200">
         <div className="text-center mb-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-2">Current Openings</h2>
           <p className="text-gray-600">Available positions across our offices</p>
@@ -109,7 +109,7 @@ const Career = () => {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* Why Join Us Section */}
       <section className="p-8 mb-8 poppins border-t border-gray-200">
@@ -136,7 +136,7 @@ const Career = () => {
       </section>
 
       {/* Application Process */}
-      <section className="p-8 border-t poppins border-gray-200">
+      {/* <section className="p-8 border-t poppins border-gray-200">
         <div className="bg-gray-100 rounded-lg p-6">
           <div className="text-center mb-6">
             <h2 className="text-2xl font-bold text-gray-800 mb-2">Application Process</h2>
@@ -175,7 +175,7 @@ const Career = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };
