@@ -1,6 +1,7 @@
 import { createClient } from '@sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
 
+// Create client with fallback for custom domain CORS issues
 export const client = createClient({
   projectId: 'k9qzu7ux',
   dataset: 'production',
@@ -10,12 +11,48 @@ export const client = createClient({
   stega: {
     enabled: false, // Disable for better performance
   },
+  // Add token for authenticated requests if needed (optional, for draft content)
+  // token: import.meta.env.VITE_SANITY_TOKEN,
+  
+  // Increase timeout for custom domains
+  timeout: 30000, // 30 seconds
+  
+  // Enable withCredentials for CORS
+  withCredentials: false,
+})
+
+// Fallback client without CDN for custom domain issues
+export const clientNoCdn = createClient({
+  projectId: 'k9qzu7ux',
+  dataset: 'production',
+  useCdn: false, // Direct API connection, bypasses CDN CORS
+  apiVersion: '2024-01-01',
+  perspective: 'published',
+  timeout: 30000,
 })
 
 const builder = imageUrlBuilder(client)
 
 export function urlFor(source: any) {
   return builder.image(source)
+}
+
+// Fetch helper with automatic fallback for CORS issues
+export async function fetchWithFallback<T>(query: string, params?: Record<string, any>): Promise<T> {
+  try {
+    // Try CDN first (faster)
+    return await client.fetch<T>(query, params)
+  } catch (error: any) {
+    // If CORS or network error, fallback to non-CDN client
+    if (error?.message?.includes('CORS') || 
+        error?.message?.includes('Network') || 
+        error?.statusCode === 0) {
+      console.warn('CDN request failed, falling back to direct API:', error.message)
+      return await clientNoCdn.fetch<T>(query, params)
+    }
+    // Re-throw other errors
+    throw error
+  }
 }
 
 // GROQ queries
