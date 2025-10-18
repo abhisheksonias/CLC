@@ -50,43 +50,97 @@ const Hero = () => {
 
   return (
     <div className="flex-1 bg-white/95 backdrop-blur-sm">
-      {/* Hero Section */}
-      <section className="relative p-4 sm:p-6 md:p-8">
-        <div className="text-center mb-6 sm:mb-8">
-          <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl poppins text-gray-600 font-bold mb-4 sm:mb-6 px-2">
-            Leading Legal Excellence in Tax & Commercial Disputes
-          </h1>
-          <div className="poppins flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
-            <Button
-              className="bg-primary hover:bg-primary-dark text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium text-sm sm:text-base"
-            >
-              Get Legal Consultation
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-            <Button
-              variant="outline"
-              className="border-gray-300 text-gray-700 hover:bg-gray-50 px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-sm sm:text-base"
-            >
-              Our Expertise
-            </Button>
-          </div>
+      {/* Hero Section - Redesigned with Animations */}
+      <section className="relative p-4 sm:p-6 md:p-8 overflow-hidden">
+        {/* Animated Minimal Geometric Pattern Background */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Subtle gradient orbs */}
+          <div className="absolute top-0 left-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-pulse opacity-20"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/15 rounded-full blur-3xl animate-pulse opacity-20" style={{ animationDelay: '1s' }}></div>
+          
+          {/* Animated lines pattern */}
+          <svg className="absolute inset-0 w-full h-full opacity-[0.2]" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="1" className="text-primary"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" className="animate-pattern-shift" />
+          </svg>
+          
+          {/* Floating geometric shapes */}
+          <div className="absolute top-1/4 left-1/4 w-20 h-20 border-2 border-primary/10 rotate-12 animate-float-slow"></div>
+          <div className="absolute top-1/3 right-1/4 w-16 h-16 border-2 border-primary/10 rounded-full animate-float-medium"></div>
+          <div className="absolute bottom-1/4 left-1/3 w-24 h-24 border-2 border-primary/10 -rotate-45 animate-float-slow" style={{ animationDelay: '1.5s' }}></div>
+          <div className="absolute bottom-1/3 right-1/3 w-12 h-12 border-2 border-primary/10 rounded-full animate-float-medium" style={{ animationDelay: '0.5s' }}></div>
         </div>
 
-        <div
-          className="bg-gray-100 aspect-video rounded-lg flex items-end justify-center mb-6 sm:mb-8"
-          style={{
-            backgroundImage: 'url(/herobg.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="text-center bg-gray-800/70 rounded-lg p-3 sm:p-4 mx-2 sm:mx-4">
-            <h2 className="text-base sm:text-lg md:text-xl font-semibold text-white mb-2">
-              Strategic Legal Solutions for Modern Business
-            </h2>
-            <p className="text-white text-xs sm:text-sm md:text-base">
-              Boutique law practice with deep specialization in tax advisory and dispute resolution
-            </p>
+        <div className="relative z-10 bg">
+          {/* Main Heading with Fade-in Animation */}
+          <div className="text-center mb-6 sm:mb-8 animate-fade-in">
+            <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl poppins text-gray-600 font-bold mb-4 sm:mb-6 px-2 leading-tight">
+              Leading Legal Excellence in Tax & Commercial Disputes
+            </h1>
+            <div className="poppins flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+              <Button
+                className="bg-primary hover:bg-primary-dark text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium text-sm sm:text-base transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                Get Legal Consultation
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+              <Button
+                variant="outline"
+                className="border-gray-300 text-gray-700 hover:bg-gray-50 px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-sm sm:text-base transform hover:scale-105 transition-all duration-300"
+              >
+                Our Expertise
+              </Button>
+            </div>
+          </div>
+
+          {/* Featured Content Card with Gradient Border */}
+          <div className="relative max-w-4xl mx-auto mb-6 sm:mb-8">
+            {/* Gradient Border Effect */}
+            {/* <div className="absolute inset-0 bg-gradient-to-r from-primary/30 via-primary/50 to-primary/30 rounded-2xl blur-sm"></div> */}
+            
+            {/* Main Content Card */}
+            <div className="relative bg-white/30 border border-gray-200 rounded-2xl p-6 sm:p-8 md:p-10 shadow-xl">
+              {/* Decorative Corner Elements */}
+              <div className="absolute top-0 left-0 w-16 h-16 border-t-4 border-l-4 border-primary rounded-tl-2xl opacity-50"></div>
+              <div className="absolute bottom-0 right-0 w-16 h-16 border-b-4 border-r-4 border-primary rounded-br-2xl opacity-50"></div>
+
+              {/* Content */}
+              <div className="relative z-10 text-center space-y-4">
+               
+                
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-3 poppins">
+                  Strategic Legal Solutions for Modern Business
+                </h2>
+                
+                <p className="text-gray-600 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+                  Boutique law practice with deep specialization in tax advisory and dispute resolution
+                </p>
+
+                {/* Feature Pills */}
+                <div className="flex flex-wrap gap-3 justify-center pt-4">
+                  <div className="bg-gray-100 px-4 py-2 rounded-full text-xs sm:text-sm text-gray-700 flex items-center gap-2 transform hover:scale-105 transition-transform">
+                    <Shield className="h-4 w-4 text-primary" />
+                    Supreme Court
+                  </div>
+                  <div className="bg-gray-100 px-4 py-2 rounded-full text-xs sm:text-sm text-gray-700 flex items-center gap-2 transform hover:scale-105 transition-transform">
+                    <Award className="h-4 w-4 text-primary" />
+                    20+ Years
+                  </div>
+                  <div className="bg-gray-100 px-4 py-2 rounded-full text-xs sm:text-sm text-gray-700 flex items-center gap-2 transform hover:scale-105 transition-transform">
+                    <Users className="h-4 w-4 text-primary" />
+                    Pan-India Network
+                  </div>
+                  <div className="bg-gray-100 px-4 py-2 rounded-full text-xs sm:text-sm text-gray-700 flex items-center gap-2 transform hover:scale-105 transition-transform">
+                    <BookOpen className="h-4 w-4 text-primary" />
+                    Research-Driven
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
