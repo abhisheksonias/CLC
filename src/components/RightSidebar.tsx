@@ -1,15 +1,63 @@
 import { useFeaturedNewsUpdates, useSearchArticles } from "@/hooks/useSanityData";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useMemo, useCallback, memo } from "react";
+
+// Memoized News Item Component
+const NewsItem = memo(({ news, getTypeDisplayName }: { news: any; getTypeDisplayName: (type: string) => string }) => (
+  <div>
+    <Link to={`/news/${news.slug.current}`} className="hover:text-primary transition-colors">
+      <h4 className="text-sm font-semibold text-gray-800 mb-1">
+        {news.title}
+      </h4>
+      <p className="text-xs text-gray-500">
+        {getTypeDisplayName(news.type)} · {format(new Date(news.publishedAt), 'MMM dd yyyy')}
+      </p>
+    </Link>
+  </div>
+));
+
+NewsItem.displayName = 'NewsItem';
+
+// Memoized Search Result Component
+const SearchResultItem = memo(({ result, getTypeDisplayName }: { result: any; getTypeDisplayName: (type: string) => string }) => (
+  <div>
+    <Link 
+      to={result._type === 'blogPost' ? `/blog/${result.slug.current}` : `/news/${result.slug.current}`} 
+      className="hover:text-primary transition-colors"
+    >
+      <h4 className="text-sm font-semibold text-gray-800 mb-1">
+        {result.title}
+      </h4>
+      <p className="text-xs text-gray-500 mb-1">
+        {result._type === 'blogPost' 
+          ? `Blog · ${result.category?.name || 'Uncategorized'}`
+          : getTypeDisplayName(result.type || 'news')
+        } · {format(new Date(result.publishedAt), 'MMM dd yyyy')}
+      </p>
+      {result.excerpt && (
+        <p className="text-xs text-gray-600 line-clamp-2">
+          {result.excerpt}
+        </p>
+      )}
+    </Link>
+  </div>
+));
+
+SearchResultItem.displayName = 'SearchResultItem';
 
 const RightSidebar = () => {
   const { data: featuredNews = [], isLoading } = useFeaturedNewsUpdates();
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearching, setIsSearching] = useState(false);
-  const { data: searchResults = [], isLoading: isSearchLoading } = useSearchArticles(searchQuery);
+  
+  // Only fetch search results when actively searching
+  const { data: searchResults = [], isLoading: isSearchLoading } = useSearchArticles(
+    isSearching ? searchQuery : ""
+  );
 
-  const getTypeDisplayName = (type: string) => {
+  // Memoize the type display function
+  const getTypeDisplayName = useCallback((type: string) => {
     switch (type) {
       case "case-update": return "Case Update";
       case "news": return "News";
@@ -17,19 +65,19 @@ const RightSidebar = () => {
       case "deal-corner": return "Deal Corner";
       default: return type;
     }
-  };
+  }, []);
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSearch = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim().length > 2) {
       setIsSearching(true);
     }
-  };
+  }, [searchQuery]);
 
-  const handleClearSearch = () => {
+  const handleClearSearch = useCallback(() => {
     setSearchQuery("");
     setIsSearching(false);
-  };
+  }, []);
 
   return (
     <div className="right-sidebar w-full lg:w-auto bg-white border-l border-gray-200 sticky top-0 self-start">
@@ -81,25 +129,11 @@ const RightSidebar = () => {
               </>
             ) : searchResults.length > 0 ? (
               searchResults.map((result) => (
-                <div key={result._id}>
-                  <Link 
-                    to={result._type === 'blogPost' ? `/blog/${result.slug.current}` : `/news/${result.slug.current}`} 
-                    className="hover:text-primary transition-colors"
-                  >
-                    <h4 className="text-sm font-semibold text-gray-800 mb-1">
-                      {result.title}
-                    </h4>
-                    <p className="text-xs text-gray-500 mb-1">
-                      {result._type === 'blogPost' 
-                        ? `Blog · ${result.category?.name || 'Uncategorized'}`
-                        : getTypeDisplayName(result.type || 'news')
-                      } · {format(new Date(result.publishedAt), 'MMM dd yyyy')}
-                    </p>
-                    <p className="text-xs text-gray-600 line-clamp-2">
-                      {result.excerpt}
-                    </p>
-                  </Link>
-                </div>
+                <SearchResultItem 
+                  key={result._id} 
+                  result={result} 
+                  getTypeDisplayName={getTypeDisplayName}
+                />
               ))
             ) : (
               <div className="text-center py-4">
@@ -140,16 +174,11 @@ const RightSidebar = () => {
             </>
           ) : (
             featuredNews.map((news) => (
-              <div key={news._id}>
-                <Link to={`/news/${news.slug.current}`} className="hover:text-primary transition-colors">
-                  <h4 className="text-sm font-semibold text-gray-800 mb-1">
-                    {news.title}
-                  </h4>
-                  <p className="text-xs text-gray-500">
-                    {getTypeDisplayName(news.type)} · {format(new Date(news.publishedAt), 'MMM dd yyyy')}
-                  </p>
-                </Link>
-              </div>
+              <NewsItem 
+                key={news._id} 
+                news={news} 
+                getTypeDisplayName={getTypeDisplayName}
+              />
             ))
           )}
         </div>
@@ -184,4 +213,4 @@ const RightSidebar = () => {
   );
 };
 
-export default RightSidebar;
+export default memo(RightSidebar);

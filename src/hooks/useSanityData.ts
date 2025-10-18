@@ -45,6 +45,9 @@ export function useFeaturedNewsUpdates() {
   return useQuery<NewsUpdatePreview[]>({
     queryKey: ['featuredNewsUpdates'],
     queryFn: () => client.fetch(queries.getFeaturedNewsUpdates),
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    gcTime: 10 * 60 * 1000, // 10 minutes (formerly cacheTime)
+    refetchOnWindowFocus: false,
   })
 }
 
@@ -60,8 +63,10 @@ export function useCategories() {
 export function useSearchArticles(query: string) {
   return useQuery<SearchResult[]>({
     queryKey: ['searchArticles', query],
-    queryFn: () => client.fetch(queries.searchArticles, { query: `*${query}*` }),
+    queryFn: () => client.fetch(queries.searchArticles, { query: `*${query}*` } as any),
     enabled: !!query && query.length > 2,
+    staleTime: 2 * 60 * 1000, // 2 minutes
+    gcTime: 5 * 60 * 1000, // 5 minutes
   })
 }
 

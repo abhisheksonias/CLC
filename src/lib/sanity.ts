@@ -4,8 +4,12 @@ import imageUrlBuilder from '@sanity/image-url'
 export const client = createClient({
   projectId: 'k9qzu7ux',
   dataset: 'production',
-  useCdn: true,
+  useCdn: true, // Use CDN for faster reads
   apiVersion: '2024-01-01',
+  perspective: 'published', // Only fetch published documents
+  stega: {
+    enabled: false, // Disable for better performance
+  },
 })
 
 const builder = imageUrlBuilder(client)
@@ -112,29 +116,21 @@ export const queries = {
     _id,
     title,
     slug,
-    excerpt,
     type,
-    publishedAt,
-    readTime,
-    isNew,
-    featuredImage
+    publishedAt
   }`,
   
   // Search queries
-  searchArticles: `*[_type in ["blogPost", "newsUpdate"] && (title match $query || excerpt match $query || content match $query)] | order(publishedAt desc) {
+  searchArticles: `*[_type in ["blogPost", "newsUpdate"] && (title match $query || excerpt match $query)] | order(publishedAt desc)[0...10] {
     _id,
     _type,
     title,
     slug,
     excerpt,
     publishedAt,
-    readTime,
-    isNew,
     type,
     category->{
-      name,
-      slug,
-      color
+      name
     }
   }`
   ,
