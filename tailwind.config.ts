@@ -15,7 +15,7 @@ export default {
     extend: {
       colors: {
         // Custom CLC colors
-        'clc-blue': '#1c4897',
+        'clc-blue': '#214813',
         'clc-yellow': '#f9be1d',
         'clc-white': '#ffffff',
         'clc-black': '#000000',

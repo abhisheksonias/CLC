@@ -42,7 +42,7 @@ const LeftSidebar = ({ activeSection = "home", setActiveSection }: LeftSidebarPr
               onClick={() => setActiveSection && setActiveSection(item.key)}
               className={`w-full flex items-start px-3 py-2 text-sm font-medium rounded-md transition-colors ${
                 item.active 
-                  ? 'bg-blue-600/30 text-white' 
+                  ? 'bg-[#779E5A] text-white' 
                   : 'hover:bg-slate-700/50 hover:text-slate-100'
               }`}
             >

@@ -17,18 +17,18 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 0%;
 
-    /* Blue from logo - #1c4897 */
-    --primary: 218 68% 35%;
-    /* #1c4897 */
+    /* Green from logo - #214813 */
+    --primary: 104 58% 18%;
+    /* #214813 */
     --primary-foreground: 0 0% 100%;
-    --primary-light: 218 68% 45%;
-    --primary-dark: 218 68% 25%;
+    --primary-light: 104 58% 28%;
+    --primary-dark: 104 58% 12%;
 
-    /* Dark blue for sidebar */
-    --sidebar-bg: 218 68% 25%;
-    /* Darker shade of logo blue */
+    /* Dark green for sidebar */
+    --sidebar-bg: 104 58% 12%;
+    /* Darker shade of logo green */
     --sidebar-foreground: 0 0% 100%;
-    --sidebar-hover: 218 68% 35%;
+    --sidebar-hover: 104 58% 18%;
 
     /* Yellow from logo - #f9be1d */
     --secondary: 46 95% 55%;
@@ -47,21 +47,21 @@
 
     --border: 0 0% 90%;
     --input: 0 0% 90%;
-    --ring: 218 68% 35%;
+    --ring: 104 58% 18%;
 
-    /* Blue gradient for header */
+    /* Green gradient for header */
     --gradient-header: linear-gradient(135deg, hsl(var(--primary-light)) 0%, hsl(var(--primary-dark)) 100%);
 
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 0 0% 15%;
-    --sidebar-primary: 218 68% 35%;
+    --sidebar-primary: 104 58% 18%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 95%;
     --sidebar-accent-foreground: 0 0% 15%;
     --sidebar-border: 0 0% 90%;
-    --sidebar-ring: 218 68% 35%;
+    --sidebar-ring: 104 58% 18%;
   }
 
   .dark {
@@ -76,8 +76,8 @@
     --popover: 0 0% 5%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 218 68% 35%;
-    /* Keep logo blue */
+    --primary: 104 58% 18%;
+    /* Keep logo green */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 46 95% 55%;
@@ -95,22 +95,22 @@
 
     --border: 0 0% 15%;
     --input: 0 0% 15%;
-    --ring: 218 68% 35%;
+    --ring: 104 58% 18%;
     --sidebar-background: 0 0% 5%;
     --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 218 68% 35%;
+    --sidebar-primary: 104 58% 18%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 10%;
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 0 0% 15%;
-    --sidebar-ring: 218 68% 35%;
+    --sidebar-ring: 104 58% 18%;
   }
 }
 
 /* Professional background texture for law firm - updated for new color scheme */
 .bg-law-texture {
   background-image:
-    radial-gradient(circle at 25% 25%, rgba(28, 72, 151, 0.02) 1px, transparent 1px),
+    radial-gradient(circle at 25% 25%, rgba(33, 72, 19, 0.02) 1px, transparent 1px),
     radial-gradient(circle at 75% 75%, rgba(249, 190, 29, 0.03) 1px, transparent 1px),
     linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(248, 250, 252, 0.9) 100%);
   background-size: 40px 40px, 60px 60px, 100% 100%;

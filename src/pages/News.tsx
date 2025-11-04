@@ -132,6 +132,8 @@ const News = () => {
                       src={urlFor(newsUpdate.featuredImage).width(800).height(400).fit('crop').url()}
                       alt={newsUpdate.featuredImage.alt || newsUpdate.title}
                       className="w-full h-auto rounded-lg shadow-md"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 )}

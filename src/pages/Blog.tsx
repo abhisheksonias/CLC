@@ -317,6 +317,8 @@ const Blog = () => {
                       src={urlFor(blogPost.featuredImage).width(800).height(400).fit('crop').url()}
                       alt={blogPost.featuredImage.alt || blogPost.title}
                       className="w-full h-auto rounded-lg shadow-md"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 )}

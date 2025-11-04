@@ -121,23 +121,6 @@ const Expertise = () => {
           ))}
         </div>
 
-        {/* CTA Section */}
-        <div className="mt-16 text-center">
-          <Card className="bg-gradient-to-r from-primary to-primary-dark text-white shadow-elegant">
-            <CardContent className="p-12">
-              <Globe className="h-12 w-12 mx-auto mb-6 text-secondary" />
-              <h3 className="text-2xl font-semibold mb-4">Pan-India Legal Network</h3>
-              <p className="text-lg mb-6 max-w-2xl mx-auto">
-                With on-ground representation in every Indian state capital, our pan-India 
-                footprint allows for swift, coordinated action and local insight—ensuring 
-                efficiency without compromise.
-              </p>
-              <Button variant="secondary" size="lg">
-                Discuss Your Legal Requirements
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
       </div>
     </section>
   );

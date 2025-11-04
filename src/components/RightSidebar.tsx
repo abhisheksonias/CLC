@@ -111,7 +111,7 @@ const RightSidebar = () => {
       {/* Search Results */}
       {isSearching && (
         <div className="border-b border-gray-200">
-          <div className="bg-blue-600 text-white px-4 py-2">
+          <div className="bg-primary text-white px-4 py-2">
             <h3 className="text-sm font-semibold">SEARCH RESULTS</h3>
           </div>
           <div className="p-4 space-y-4">

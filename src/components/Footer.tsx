@@ -32,7 +32,7 @@ const Footer = () => {
             <div className="sm:col-span-2 lg:col-span-1">
               <div className="flex items-center space-x-3 mb-4">
                 <div className="flex items-center">
-                  <img src="/clc-logo.png" alt="commercial law firm" className="h-8 sm:h-10 w-auto" />
+                  <img src="/clc-logo.png" alt="commercial law firm" className="h-8 sm:h-10 w-auto" loading="lazy" decoding="async" />
                 </div>
               </div>
               <p className="text-xs sm:text-sm text-gray-500 leading-relaxed mb-4">

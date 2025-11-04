@@ -47,7 +47,7 @@ export async function fetchWithFallback<T>(query: string, params?: Record<string
     if (error?.message?.includes('CORS') || 
         error?.message?.includes('Network') || 
         error?.statusCode === 0) {
-      console.warn('CDN request failed, falling back to direct API:', error.message)
+      // Silently fallback to non-CDN client
       return await clientNoCdn.fetch<T>(query, params)
     }
     // Re-throw other errors

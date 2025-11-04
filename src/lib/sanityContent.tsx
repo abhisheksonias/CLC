@@ -14,6 +14,8 @@ const portableTextComponents = {
             src={urlFor(value).width(800).height(400).fit('crop').url()}
             alt={value.alt || ''}
             className="w-full h-auto rounded-lg shadow-md"
+            loading="lazy"
+            decoding="async"
           />
           {value.alt && (
             <p className="text-sm text-gray-600 mt-2 text-center italic">

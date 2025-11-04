@@ -69,10 +69,6 @@ const Hero = () => {
           </svg>
           
           {/* Floating geometric shapes */}
-          <div className="absolute top-1/4 left-1/4 w-20 h-20 border-2 border-primary/10 rotate-12 animate-float-slow"></div>
-          <div className="absolute top-1/3 right-1/4 w-16 h-16 border-2 border-primary/10 rounded-full animate-float-medium"></div>
-          <div className="absolute bottom-1/4 left-1/3 w-24 h-24 border-2 border-primary/10 -rotate-45 animate-float-slow" style={{ animationDelay: '1.5s' }}></div>
-          <div className="absolute bottom-1/3 right-1/3 w-12 h-12 border-2 border-primary/10 rounded-full animate-float-medium" style={{ animationDelay: '0.5s' }}></div>
         </div>
 
         <div className="relative z-10 bg">
@@ -103,38 +99,44 @@ const Hero = () => {
             {/* <div className="absolute inset-0 bg-gradient-to-r from-primary/30 via-primary/50 to-primary/30 rounded-2xl blur-sm"></div> */}
             
             {/* Main Content Card */}
-            <div className="relative bg-white/30 border border-gray-200 rounded-2xl p-6 sm:p-8 md:p-10 shadow-xl">
+            <div 
+              className="relative border border-gray-200 rounded-2xl p-6 sm:p-8 md:p-10 shadow-xl overflow-hidden"
+              style={{
+                backgroundImage: 'url(/bgpattern.png)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
+              }}
+            >
+              {/* Overlay for better text readability */}
+              <div className="absolute inset-0 bg-white/70 rounded-2xl"></div>
+              
               {/* Decorative Corner Elements */}
               <div className="absolute top-0 left-0 w-16 h-16 border-t-4 border-l-4 border-primary rounded-tl-2xl opacity-50"></div>
               <div className="absolute bottom-0 right-0 w-16 h-16 border-b-4 border-r-4 border-primary rounded-br-2xl opacity-50"></div>
 
               {/* Content */}
               <div className="relative z-10 text-center space-y-4">
-               
-                
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-3 poppins">
-                  Strategic Legal Solutions for Modern Business
-                </h2>
-                
-                <p className="text-gray-600 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+                 
+                <p className="text-[#163C0F] text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
                   Boutique law practice with deep specialization in tax advisory and dispute resolution
                 </p>
 
                 {/* Feature Pills */}
                 <div className="flex flex-wrap gap-3 justify-center pt-4">
-                  <div className="bg-gray-100 px-4 py-2 rounded-full text-xs sm:text-sm text-gray-700 flex items-center gap-2 transform hover:scale-105 transition-transform">
+                  <div className="bg-gray-100 px-4 py-2 rounded-full border border-[#163C0F] text-xs sm:text-sm text-gray-700 flex items-center gap-2 transform hover:scale-105 transition-transform">
                     <Shield className="h-4 w-4 text-primary" />
                     Supreme Court
                   </div>
-                  <div className="bg-gray-100 px-4 py-2 rounded-full text-xs sm:text-sm text-gray-700 flex items-center gap-2 transform hover:scale-105 transition-transform">
+                  <div className="bg-gray-100 px-4 py-2 rounded-full border border-[#163C0F] text-xs sm:text-sm text-gray-700 flex items-center gap-2 transform hover:scale-105 transition-transform">
                     <Award className="h-4 w-4 text-primary" />
                     20+ Years
                   </div>
-                  <div className="bg-gray-100 px-4 py-2 rounded-full text-xs sm:text-sm text-gray-700 flex items-center gap-2 transform hover:scale-105 transition-transform">
+                  <div className="bg-gray-100 px-4 py-2 rounded-full border border-[#163C0F] text-xs sm:text-sm text-gray-700 flex items-center gap-2 transform hover:scale-105 transition-transform">
                     <Users className="h-4 w-4 text-primary" />
                     Pan-India Network
                   </div>
-                  <div className="bg-gray-100 px-4 py-2 rounded-full text-xs sm:text-sm text-gray-700 flex items-center gap-2 transform hover:scale-105 transition-transform">
+                  <div className="bg-gray-100 px-4 py-2 rounded-full border border-[#163C0F] text-xs sm:text-sm text-gray-700 flex items-center gap-2 transform hover:scale-105 transition-transform">
                     <BookOpen className="h-4 w-4 text-primary" />
                     Research-Driven
                   </div>
@@ -225,6 +227,8 @@ const Hero = () => {
                   src={member.image}
                   alt={member.name}
                   className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
                   onError={(e) => {
                     e.currentTarget.src = 'https://via.placeholder.com/300x300?text=' + member.name;
                   }}
