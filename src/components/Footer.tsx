@@ -5,21 +5,21 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   const practiceAreas = [
-    "Direct Tax Advisory",
-    "Indirect Tax Litigation",
-    "GST Compliance",
-    "Commercial Disputes",
-    "Regulatory Matters",
-    "International Tax"
+    { label: "Direct Tax Advisory", link: "/expertise" },
+    { label: "Indirect Tax Litigation", link: "/expertise" },
+    { label: "GST Compliance", link: "/expertise" },
+    { label: "Commercial Disputes", link: "/expertise" },
+    { label: "Regulatory Matters", link: "/expertise" },
+    { label: "International Tax", link: "/expertise" }
   ];
 
   const quickLinks: { label: string; to: string }[] = [
-    { label: "About Us", to: "/#about" },
-    { label: "Our Team", to: "/#team" },
-    { label: "Case Studies", to: "/#insights" },
-    { label: "Legal Updates", to: "/#content" },
-    { label: "Contact", to: "/#contact" },
-    { label: "Careers", to: "/#career" },
+    { label: "About Us", to: "/about" },
+    { label: "Our Team", to: "/team" },
+    { label: "Case Studies", to: "/insights" },
+    { label: "Legal Updates", to: "/news-updates" },
+    { label: "Contact", to: "/contact" },
+    { label: "Careers", to: "/career" },
   ];
 
   return (
@@ -43,12 +43,12 @@ const Footer = () => {
                 <a href="https://www.linkedin.com/company/7953220/" className="text-gray-500 hover:text-gray-700 transition-colors">
                   <Linkedin className="h-4 w-4 sm:h-5 sm:w-5" />
                 </a>
-                <a href="https://twitter.com/yourtwitterhandle" className="text-gray-500 hover:text-gray-700 transition-colors">
+                {/* <a href="https://twitter.com/yourtwitterhandle" className="text-gray-500 hover:text-gray-700 transition-colors">
                   <Twitter className="h-4 w-4 sm:h-5 sm:w-5" />
                 </a>
                 <a href="https://www.instagram.com/yourinstagramhandle" className="text-gray-500 hover:text-gray-700 transition-colors">
                   <Instagram className="h-4 w-4 sm:h-5 sm:w-5" />
-                </a>
+                </a> */}
               </div>
             </div>
 
@@ -61,9 +61,9 @@ const Footer = () => {
                   <ul className="space-y-1 sm:space-y-2">
                     {practiceAreas.map((area, index) => (
                       <li key={index}>
-                        <a href="#" className="text-xs sm:text-sm text-gray-500 hover:text-gray-700 transition-colors">
-                          {area}
-                        </a>
+                        <Link to={area.link} className="text-xs sm:text-sm text-gray-500 hover:text-gray-700 transition-colors">
+                          {area.label}
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -114,7 +114,9 @@ const Footer = () => {
         {/* Bottom Footer - Styled like your snippet */}
         <div className="bg-gray-100/80 backdrop-blur-sm px-2 sm:px-4 py-2 text-xs text-gray-600 border-t border-gray-200/50">
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0">
-            <span className="text-xs sm:text-sm">www.commerciallawchamber.com</span>
+            <Link to="/" className="text-xs sm:text-sm hover:text-gray-800 transition-colors">
+              www.commerciallawchamber.com
+            </Link>
             <div className="flex space-x-4">
               <span className="hover:text-gray-800 cursor-pointer transition-colors text-xs sm:text-sm text-center">
                 Copyright © 2025, Commercial Law Chamber. All Rights Reserved.

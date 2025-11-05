@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface LeftSidebarProps {
   activeSection?: string;
@@ -6,6 +7,28 @@ interface LeftSidebarProps {
 }
 
 const LeftSidebar = ({ activeSection = "home", setActiveSection }: LeftSidebarProps) => {
+  const navigate = useNavigate();
+
+  // Map section keys to routes
+  const sectionToRoute: Record<string, string> = {
+    'home': '/',
+    'about': '/about',
+    'career': '/career',
+    'expertise': '/expertise',
+    'team': '/team',
+    'insights': '/insights',
+    'contact': '/contact',
+    'content': '/news-updates',
+  };
+
+  const handleNavigation = (key: string) => {
+    const route = sectionToRoute[key] || '/';
+    navigate(route);
+    if (setActiveSection) {
+      setActiveSection(key);
+    }
+  };
+
   const menuItems = [
     { label: "HOME", key: "home", active: activeSection === "home", icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg> },
     { label: "ABOUT CLC", key: "about", active: activeSection === "about", icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> },
@@ -33,21 +56,21 @@ const LeftSidebar = ({ activeSection = "home", setActiveSection }: LeftSidebarPr
 
   return (
     <div className="left-sidebar w-full lg:w-auto bg-slate-900/70 backdrop-blur-lg text-slate-300 h-fit flex flex-col border-r border-white/10 sticky top-0 self-start lg:max-h-screen overflow-y-auto">
-      <div className="p-2">
+      <div className="p-3">
         {/* Main navigation */}
         <nav className="space-y-1">
           {menuItems.map((item, index) => (
             <button
               key={index}
-              onClick={() => setActiveSection && setActiveSection(item.key)}
-              className={`w-full flex items-start px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+              onClick={() => handleNavigation(item.key)}
+              className={`w-full flex items-center px-3 py-2.5 text-sm font-medium rounded-md transition-colors ${
                 item.active 
                   ? 'bg-[#779E5A] text-white' 
                   : 'hover:bg-slate-700/50 hover:text-slate-100'
               }`}
             >
-              <div className="h-5 w-5 mr-3 flex-shrink-0 mt-0.5">{item.icon}</div>
-              <span className="text-left">{item.label}</span>
+              <div className="h-5 w-5 mr-3 flex-shrink-0 flex items-center justify-center">{item.icon}</div>
+              <span className="text-left flex-1 leading-tight">{item.label}</span>
             </button>
           ))}
         </nav>
@@ -70,13 +93,13 @@ const LeftSidebar = ({ activeSection = "home", setActiveSection }: LeftSidebarPr
       </div>
 
       {/* Bottom sections */}
-      <div className="bg-slate-900/50 p-2 border-t border-white/10">
+      <div className="bg-slate-900/50 p-2 border-t border-white/10 mt-auto">
         <div className="space-y-2">
           {sections.map((section, index) => (
-            <div key={index} className="px-3 py-2 rounded-md bg-slate-800/40 hover:bg-slate-700/50 transition-colors cursor-pointer">
-              <h3 className="font-semibold text-white text-sm">{section.title}</h3>
+            <div key={index} className="px-3 py-2.5 rounded-md bg-slate-800/40 hover:bg-slate-700/50 transition-colors cursor-pointer">
+              <h3 className="font-semibold text-white text-sm leading-tight">{section.title}</h3>
               {section.subtitle && (
-                <p className="text-xs text-slate-400 mt-1">{section.subtitle}</p>
+                <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">{section.subtitle}</p>
               )}
             </div>
           ))}

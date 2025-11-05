@@ -20,23 +20,38 @@ const Index = () => {
   const location = useLocation();
 
   useEffect(() => {
+    // Get route from pathname
+    const path = location.pathname.replace('/', '').trim();
+    
+    // Map routes to section keys
+    const routeToSection: Record<string, string> = {
+      '': 'home',
+      'about': 'about',
+      'career': 'career',
+      'expertise': 'expertise',
+      'team': 'team',
+      'insights': 'insights',
+      'contact': 'contact',
+      'news-updates': 'content',
+    };
+
+    const section = routeToSection[path] || 'home';
+    setActiveSection(section);
+
+    // Scroll to top for better UX
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Also check for hash (for backward compatibility)
     const hash = location.hash.replace('#', '');
-    const allowed = ["about", "team", "insights", "content", "contact", "career", "expertise", "home", "news-updates"]; 
-    if (hash && allowed.includes(hash)) {
-      // Map hash to section key used by renderer
-      const section = hash === 'news-updates' ? 'content' : hash;
-      setActiveSection(section);
-      // scroll top for better UX when navigating via footer
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      // attempt to scroll into the anchor after render
+    if (hash) {
       setTimeout(() => {
         const el = document.getElementById(hash);
         if (el) {
           el.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-      }, 0);
+      }, 100);
     }
-  }, [location.hash]);
+  }, [location.pathname, location.hash]);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
   const renderMainContent = () => {
@@ -95,7 +110,7 @@ const Index = () => {
               setActiveSection={(section) => {
                 setActiveSection(section);
                 setIsMobileSidebarOpen(false); // Close sidebar when item is selected
-              }} 
+              }}
             />
           </div>
           
