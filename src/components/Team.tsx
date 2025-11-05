@@ -1,4 +1,5 @@
 import TeamMember, { teamMembers } from "./TeamMember";
+import { Link } from "react-router-dom";
 
 const Team = () => {
   return (
@@ -30,12 +31,12 @@ const Team = () => {
             We're always looking for talented professionals to join our team. If you're passionate about 
             tax law and commercial litigation, we'd love to hear from you.
           </p>
-          <a 
-            href="#career"
+          <Link 
+            to="/career"
             className="text-primary hover:text-primary-dark font-medium"
           >
             View Career Opportunities
-          </a>
+          </Link>
         </div>
       </section>
     </div>

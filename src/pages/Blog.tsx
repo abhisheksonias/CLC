@@ -298,7 +298,7 @@ const Blog = () => {
                       if (window.history.length > 1 && cameFromSameSite) {
                         navigate(-1);
                       } else {
-                        navigate('/#insights');
+                        navigate('/insights');
                       }
                     }}
                     className="flex items-center gap-2 text-gray-600 hover:text-gray-800 p-0 h-auto"

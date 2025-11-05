@@ -108,7 +108,7 @@ const News = () => {
                         if (window.history.length > 1 && cameFromSameSite) {
                           navigate(-1);
                         } else {
-                          navigate('/#news-updates');
+                          navigate('/news-updates');
                         }
                       }}
                       className="flex items-center gap-2 text-gray-600 hover:text-gray-800 p-0 h-auto"
