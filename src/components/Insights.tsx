@@ -138,7 +138,7 @@ const Insights = () => {
         )}
 
         {/* Newsletter Section */}
-        <Card className="bg-accent border-2 border-dashed border-primary/20">
+        {/* <Card className="bg-accent border-2 border-dashed border-primary/20">
           <CardContent className="p-12 text-center">
             <h3 className="text-2xl font-semibold text-primary mb-4">
               Stay Updated with Legal Developments
@@ -159,7 +159,7 @@ const Insights = () => {
               </Button>
             </div>
           </CardContent>
-        </Card>
+        </Card> */}
       </div>
     </section>
   );

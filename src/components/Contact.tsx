@@ -91,25 +91,35 @@ const Contact = () => {
               </p>
             </CardHeader>
             <CardContent>
-              <form className="space-y-6">
+              <form className="space-y-6" action="https://formsubmit.co/vivek.sarin@clclaw.in" method="POST">
+                {/* FormSubmit hidden fields */}
+                <input type="hidden" name="_subject" value="New Contact Form Submission - CLC Website" />
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_next" value={typeof window !== 'undefined' ? window.location.origin + "/contact?success=true" : "/contact?success=true"} />
+                <input type="hidden" name="_template" value="box" />
+
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Full Name *
+                    <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                      Full Name <span className="text-red-500">*</span>
                     </label>
                     <input
+                      id="name"
                       type="text"
+                      name="name"
                       required
                       className="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                       placeholder="Your full name"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Email Address *
+                    <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                      Email Address <span className="text-red-500">*</span>
                     </label>
                     <input
+                      id="email"
                       type="email"
+                      name="email"
                       required
                       className="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                       placeholder="your.email@company.com"
@@ -119,47 +129,55 @@ const Contact = () => {
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Phone Number
+                    <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
+                      Phone Number <span className="text-red-500">*</span>
                     </label>
                     <input
+                      id="phone"
                       type="tel"
+                      name="phone"
+                      required
                       className="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                       placeholder="+91 XXXXX XXXXX"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Legal Matter Type
+                    <label htmlFor="matterType" className="block text-sm font-medium text-foreground mb-2">
+                      Legal Matter Type <span className="text-red-500">*</span>
                     </label>
-                    <select className="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
-                      <option>Select type</option>
-                      <option>Direct Tax</option>
-                      <option>Indirect Tax</option>
-                      <option>GST Matters</option>
-                      <option>Commercial Disputes</option>
-                      <option>Regulatory Issues</option>
-                      <option>Other</option>
+                    <select id="matterType" name="matterType" required className="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                      <option value="">Select type</option>
+                      <option value="Direct Tax">Direct Tax</option>
+                      <option value="Indirect Tax">Indirect Tax</option>
+                      <option value="GST Matters">GST Matters</option>
+                      <option value="Commercial Disputes">Commercial Disputes</option>
+                      <option value="Regulatory Issues">Regulatory Issues</option>
+                      <option value="Other">Other</option>
                     </select>
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">
-                    Company/Organization
+                  <label htmlFor="company" className="block text-sm font-medium text-foreground mb-2">
+                    Company/Organization <span className="text-red-500">*</span>
                   </label>
                   <input
+                    id="company"
                     type="text"
+                    name="company"
+                    required
                     className="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     placeholder="Your company name"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">
-                    Message *
+                  <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                    Message <span className="text-red-500">*</span>
                   </label>
                   <textarea
+                    id="message"
+                    name="message"
                     required
                     rows={5}
                     className="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary resize-none"
@@ -168,9 +186,9 @@ const Contact = () => {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <input type="checkbox" id="privacy" className="rounded" />
+                  <input type="checkbox" id="privacy" name="privacy" required className="rounded" />
                   <label htmlFor="privacy" className="text-sm text-muted-foreground">
-                    I agree to the privacy policy and terms of service
+                    I agree to the privacy policy and terms of service <span className="text-red-500">*</span>
                   </label>
                 </div>
 

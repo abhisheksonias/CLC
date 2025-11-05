@@ -5,11 +5,11 @@ const Header = () => {
   return (
     <header className="w-full">
       {/* Top teal header */}
-      <div className="bg-white/70 backdrop-blur-lg text-black">
+      <div className="bg-white/80 backdrop-blur-lg text-black">
         <div className="max-w-full mx-auto px-2 sm:px-4 py-3">
           <div className="flex justify-between items-center">
             <div className="px-2 sm:px-4 md:px-10 flex items-center">
-              <img src="/clc-logo.png" alt="commercial law firm" className="h-8 sm:h-12 md:h-16 lg:h-12 w-auto" loading="eager" fetchpriority="high" />
+              <img src="/clc-logo.png" alt="commercial law firm" className="h-8 sm:h-12 md:h-16 lg:h-12 w-auto" loading="eager" fetchPriority="high" />
             </div>
 
             {/* Social Media Icons */}
@@ -39,7 +39,7 @@ const Header = () => {
               </a> */}
 
               <a
-                href=" https://www.linkedin.com/company/7953220/"
+                href="https://www.linkedin.com/company/7953220/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-600 hover:text-primary transition-colors"

@@ -68,7 +68,6 @@ const Hero = () => {
             <rect width="100%" height="100%" fill="url(#grid)" className="animate-pattern-shift" />
           </svg>
           
-          {/* Floating geometric shapes */}
         </div>
 
         <div className="relative z-10 bg">
@@ -80,6 +79,7 @@ const Hero = () => {
             <div className="poppins flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
               <Button
                 className="bg-primary hover:bg-primary-dark text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium text-sm sm:text-base transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                onClick={() => window.location.href = '/contact'}
               >
                 Get Legal Consultation
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -87,6 +87,7 @@ const Hero = () => {
               <Button
                 variant="outline"
                 className="border-gray-300 text-gray-700 hover:bg-gray-50 px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-sm sm:text-base transform hover:scale-105 transition-all duration-300"
+                onClick={() => window.location.href = '/expertise'}
               >
                 Our Expertise
               </Button>
