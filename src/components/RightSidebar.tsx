@@ -3,48 +3,35 @@ import { format } from "date-fns";
 import { Link } from "react-router-dom";
 import { useState, useMemo, useCallback, memo } from "react";
 
-// Memoized News Item Component
-const NewsItem = memo(({ news, getTypeDisplayName }: { news: any; getTypeDisplayName: (type: string) => string }) => (
-  <div>
-    <Link to={`/news/${news.slug.current}`} className="hover:text-primary transition-colors block">
-      <h4 className="text-sm font-semibold text-gray-800 mb-1 leading-tight">
-        {news.title}
-      </h4>
-      <p className="text-xs text-gray-500 leading-relaxed">
-        {getTypeDisplayName(news.type)} · {format(new Date(news.publishedAt), 'MMM dd yyyy')}
-      </p>
-    </Link>
-  </div>
-));
-
-NewsItem.displayName = 'NewsItem';
-
 // Memoized Search Result Component
-const SearchResultItem = memo(({ result, getTypeDisplayName }: { result: any; getTypeDisplayName: (type: string) => string }) => (
-  <div>
-    <Link 
-      to={result._type === 'blogPost' ? `/blog/${result.slug.current}` : `/news/${result.slug.current}`} 
-      className="hover:text-primary transition-colors block"
+const SearchResultItem = memo(({ result, getTypeDisplayName }: { result: any; getTypeDisplayName: (type: string) => string }) => {
+  const typeLabel = result._type === "blogPost"
+    ? `Blog · ${result.category?.name || "Uncategorized"}`
+    : getTypeDisplayName(result.type || "news");
+
+  const publishedAt = result.publishedAt ? format(new Date(result.publishedAt), "MMM dd yyyy") : "";
+
+  return (
+    <Link
+      to={result._type === "blogPost" ? `/blog/${result.slug.current}` : `/news/${result.slug.current}`}
+      className="block space-y-1"
     >
-      <h4 className="text-sm font-semibold text-gray-800 mb-1 leading-tight">
+      <p className="text-[11px] uppercase tracking-wide text-gray-500">
+        {typeLabel}{publishedAt ? ` · ${publishedAt}` : ""}
+      </p>
+      <h4 className="text-sm font-semibold text-gray-800 leading-tight">
         {result.title}
       </h4>
-      <p className="text-xs text-gray-500 mb-1 leading-relaxed">
-        {result._type === 'blogPost' 
-          ? `Blog · ${result.category?.name || 'Uncategorized'}`
-          : getTypeDisplayName(result.type || 'news')
-        } · {format(new Date(result.publishedAt), 'MMM dd yyyy')}
-      </p>
       {result.excerpt && (
-        <p className="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+        <p className="text-xs text-gray-500 leading-relaxed line-clamp-2">
           {result.excerpt}
         </p>
       )}
     </Link>
-  </div>
-));
+  );
+});
 
-SearchResultItem.displayName = 'SearchResultItem';
+SearchResultItem.displayName = "SearchResultItem";
 
 const RightSidebar = () => {
   const { data: featuredNews = [], isLoading } = useFeaturedNewsUpdates();
@@ -79,27 +66,54 @@ const RightSidebar = () => {
     setIsSearching(false);
   }, []);
 
+  const insightsItems = useMemo(() => featuredNews.slice(0, Math.min(3, featuredNews.length)), [featuredNews]);
+  const whatsNewItems = useMemo(() => {
+    if (featuredNews.length > 3) {
+      return featuredNews.slice(3);
+    }
+    return featuredNews;
+  }, [featuredNews]);
+
+  const events = useMemo(() => ([
+    {
+      type: "Webinar",
+      title: "Decoding the New GST Rules on Online Gaming",
+      date: "October 05 2025 - 3:00 PM IST",
+    },
+    {
+      type: "Seminar",
+      title: "Navigating Cross-Border Tax Complexities",
+      date: "November 15 2025 - 10:00 AM IST",
+    },
+  ]), []);
+
+  const buildMetaLabel = useCallback((item: any) => {
+    const typeLabel = getTypeDisplayName(item.type || "news");
+    const date = item.publishedAt ? format(new Date(item.publishedAt), "MMM dd yyyy") : "";
+    return date ? `${typeLabel} - ${date}` : typeLabel;
+  }, [getTypeDisplayName]);
+
   return (
-    <div className="right-sidebar w-full lg:w-auto bg-white border-l border-gray-200 sticky top-0 self-start lg:max-h-screen overflow-y-auto flex flex-col">
+    <div className="right-sidebar w-full lg:w-auto bg-transparent sticky top-0 self-start lg:max-h-screen overflow-y-auto flex flex-col gap-2">
       {/* Search */}
-      <div className="p-4 border-b border-gray-200 flex-shrink-0">
-        <form onSubmit={handleSearch} className="flex gap-0">
+      <div className="mx-1  pt-4">
+        <form onSubmit={handleSearch} className="flex items-center gap-2">
           <input
             type="text"
             placeholder="Search Articles"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="flex-1 min-w-0 px-3 py-2.5 border border-gray-300 text-sm rounded-l-md border-r-0 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+            className="flex-1 min-w-0 px-4 py-2.5 border border-gray-300 text-sm rounded-[8px] focus:outline-none focus:ring-2 focus:ring-[#779E5A] focus:border-[#779E5A]"
           />
-          <button 
+          <button
             type="submit"
-            className="px-4 py-2.5 bg-gray-600 text-white text-xs font-medium rounded-r-md flex-shrink-0 hover:bg-gray-700 transition-colors"
+            className="px-5 py-2.5 rounded-[8px] bg-[#779E5A] text-white text-sm font-medium hover:brightness-95 transition-colors"
           >
-            GO
+            Go
           </button>
         </form>
         {isSearching && (
-          <button 
+          <button
             onClick={handleClearSearch}
             className="mt-2 text-xs text-gray-500 hover:text-gray-700 underline"
           >
@@ -110,104 +124,132 @@ const RightSidebar = () => {
 
       {/* Search Results */}
       {isSearching && (
-        <div className="border-b border-gray-200 flex-shrink-0">
-          <div className="bg-primary text-white px-4 py-2.5">
-            <h3 className="text-sm font-semibold">SEARCH RESULTS</h3>
-          </div>
-          <div className="p-4 space-y-4">
-            {isSearchLoading ? (
-              // Loading skeleton
-              <>
-                <div className="animate-pulse">
-                  <div className="h-4 bg-gray-300 rounded mb-2"></div>
-                  <div className="h-3 bg-gray-300 rounded w-3/4"></div>
+        <div className="mx-1">
+          <div className="rounded-[8px] border border-gray-200 bg-white">
+            <div className="px-4 py-4 border-b border-gray-200">
+              <h3 className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Search Results</h3>
+            </div>
+            <div className="px-5 py-4 space-y-4">
+              {isSearchLoading ? (
+                <>
+                  <div className="animate-pulse space-y-2">
+                    <div className="h-4 bg-gray-200 rounded"></div>
+                    <div className="h-3 bg-gray-200 rounded w-3/4"></div>
+                  </div>
+                  <div className="animate-pulse space-y-2">
+                    <div className="h-4 bg-gray-200 rounded"></div>
+                    <div className="h-3 bg-gray-200 rounded w-3/4"></div>
+                  </div>
+                </>
+              ) : searchResults.length > 0 ? (
+                searchResults.map((result) => (
+                  <SearchResultItem
+                    key={result._id}
+                    result={result}
+                    getTypeDisplayName={getTypeDisplayName}
+                  />
+                ))
+              ) : (
+                <div className="text-center py-1">
+                  <p className="text-sm text-gray-500">No articles found for "{searchQuery}"</p>
                 </div>
-                <div className="animate-pulse">
-                  <div className="h-4 bg-gray-300 rounded mb-2"></div>
-                  <div className="h-3 bg-gray-300 rounded w-3/4"></div>
-                </div>
-              </>
-            ) : searchResults.length > 0 ? (
-              searchResults.map((result) => (
-                <SearchResultItem 
-                  key={result._id} 
-                  result={result} 
-                  getTypeDisplayName={getTypeDisplayName}
-                />
-              ))
-            ) : (
-              <div className="text-center py-4">
-                <p className="text-sm text-gray-500">No articles found for "{searchQuery}"</p>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       )}
 
-      {/* Mission and Vision */}
-      <div className="border-b border-gray-200 flex-shrink-0">
-        <div className="bg-gray-600 text-white px-4 py-2.5">
-          <h3 className="text-sm font-semibold">INSIGHTS AND PUBLICATIONS</h3>
-        </div>
-        <div className="p-4">
-          <p className="text-sm text-gray-700 leading-relaxed">Distinctly Different</p>
+      {/* Insights & Publications */}
+      <div className="mx-1">
+          <div className="rounded-[8px] border border-gray-200 bg-white">
+          <div className="px-4 py-4 border-b border-gray-200">
+            <h3 className="text-base font-semibold text-gray-900 uppercase tracking-wide whitespace-nowrap">Insights and Publications</h3>
+            <p className="text-sm text-gray-500 mt-1">Distinctly Different</p>
+          </div>
+          <div className="px-5">
+            {insightsItems.length === 0 ? (
+              <div className="py-6 text-sm text-gray-500">No insights available.</div>
+            ) : (
+              insightsItems.map((item, index) => (
+                <div key={item._id || index} className={`py-4 ${index !== 0 ? "border-t border-gray-200" : ""}`}>
+                  <Link to={`/news/${item.slug?.current ?? ""}`} className="block space-y-2">
+                    <h4 className="text-base font-semibold text-gray-900 leading-snug">
+                      {item.title}
+                    </h4>
+                    <p className="text-sm text-[#1F4FD8]">
+                      CLC Insights, {buildMetaLabel(item)}
+                    </p>
+                  </Link>
+                </div>
+              ))
+            )}
+          </div>
         </div>
       </div>
 
       {/* What's New */}
-      <div className="border-b border-gray-200 flex-shrink-0">
-        <div className="bg-white px-4 py-2.5 border-b border-gray-200">
-          <h3 className="text-sm font-semibold text-red-600">WHAT'S NEW</h3>
-        </div>
-        <div className="p-4 space-y-4">
-          {isLoading ? (
-            // Loading skeleton
-            <>
-              <div className="animate-pulse">
-                <div className="h-4 bg-gray-300 rounded mb-2"></div>
-                <div className="h-3 bg-gray-300 rounded w-3/4"></div>
+      <div className="mx-1">
+        <div className="rounded-[8px] border border-gray-200 bg-white">
+          <div className="px-4 py-4 border-b border-gray-200">
+            <h3 className="text-base font-semibold text-gray-900 uppercase tracking-wide">What's New</h3>
+          </div>
+          <div className="px-5">
+            {isLoading ? (
+              <div className="py-6 space-y-4">
+                <div className="animate-pulse space-y-2">
+                  <div className="h-4 bg-gray-200 rounded"></div>
+                  <div className="h-3 bg-gray-200 rounded w-2/3"></div>
+                </div>
+                <div className="animate-pulse space-y-2">
+                  <div className="h-4 bg-gray-200 rounded"></div>
+                  <div className="h-3 bg-gray-200 rounded w-2/3"></div>
+                </div>
               </div>
-              <div className="animate-pulse">
-                <div className="h-4 bg-gray-300 rounded mb-2"></div>
-                <div className="h-3 bg-gray-300 rounded w-3/4"></div>
-              </div>
-            </>
-          ) : (
-            featuredNews.map((news) => (
-              <NewsItem 
-                key={news._id} 
-                news={news} 
-                getTypeDisplayName={getTypeDisplayName}
-              />
-            ))
-          )}
+            ) : whatsNewItems.length === 0 ? (
+              <div className="py-6 text-sm text-gray-500">No updates available.</div>
+            ) : (
+              whatsNewItems.map((item, index) => (
+                <div key={item._id || index} className={`py-4 ${index !== 0 ? "border-t border-gray-200" : ""}`}>
+                  <Link to={`/news/${item.slug?.current ?? ""}`} className="block space-y-1">
+                    <h4 className="text-base font-semibold text-gray-900 leading-snug">
+                      {item.title}
+                    </h4>
+                    <p className="text-sm font-semibold text-[#1F4FD8] uppercase">
+                      {`${(item.type ? item.type : "Update").toUpperCase()}${item.publishedAt ? ` - ${format(new Date(item.publishedAt), "MMMM dd yyyy")}` : ""}`}
+                    </p>
+                  </Link>
+                </div>
+              ))
+            )}
+          </div>
         </div>
       </div>
 
       {/* Events */}
-      <div className="border-b border-gray-200 flex-shrink-0">
-        <div className="bg-white px-4 py-2.5 border-b border-gray-200">
-          <h3 className="text-sm font-semibold text-gray-800">EVENTS</h3>
-        </div>
-        <div className="p-4">
-          <div className="mb-4">
-            <h4 className="text-xs font-semibold text-red-600 mb-2">WEBINARS</h4>
-            <div>
-              <h5 className="text-sm font-semibold text-gray-800 mb-1 leading-tight">
-                The Next Big Play: Regulation and Opportunities in Online Social Games & E-Sports
-              </h5>
-              <p className="text-xs text-gray-500 leading-relaxed">September 09 2025 - September 09 2025</p>
-            </div>
+      <div className="mx-1">
+        <div className="rounded-2xl border border-gray-200 bg-white">
+          <div className="px-4 py-4 border-b border-gray-200">
+            <h3 className="text-base font-semibold text-gray-900 uppercase tracking-wide">Events</h3>
           </div>
-          <div>
-            <h4 className="text-xs font-semibold text-red-600 mb-2">SEMINAR</h4>
+          <div className="px-5">
+            {events.map((event, index) => (
+              <div key={event.type} className={`py-4 ${index !== 0 ? "border-t border-gray-200" : ""}`}>
+                <p className="text-xs font-semibold uppercase text-gray-700 tracking-wide">
+                  {event.type}
+                </p>
+                <p className="text-base font-semibold text-[#1F4FD8] leading-snug mt-1">
+                  {event.title}
+                </p>
+                <p className="text-sm text-gray-600 mt-1">{event.date}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
       {/* Footer */}
-      <div className="p-4 text-xs text-gray-500 text-center mt-auto flex-shrink-0">
-        Commercial Law Chamber®2016 All rights reserved.
+      <div className="px-4 pb-6 text-xs text-gray-500 text-center mt-auto">
+        Commercial Law Chamber®{new Date().getFullYear()} All rights reserved.
       </div>
     </div>
   );

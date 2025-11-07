@@ -23,19 +23,19 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="poppins bg-gray-100/90 backdrop-blur-sm border-t border-gray-200/50 text-gray-600">
-      <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8">
+    <footer className="poppins  border-t border-gray-200/50 text-gray-600">
+      <div className="max-w-8xl mx-auto px-2 sm:px- md:px-2 lg:px-2">
         {/* Main Footer Content */}
         <div className="py-4 sm:py-6 md:py-8 m-5">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {/* Company Info */}
             <div className="sm:col-span-2 lg:col-span-1">
               <div className="flex items-center space-x-3 mb-4">
-                <div className="flex items-center">
-                  <img src="/clc-logo.png" alt="commercial law firm" className="h-8 sm:h-10 w-auto" loading="lazy" decoding="async" />
+                <div className="flex items-center pb-3">
+                  <img src="/clc-logo.png" alt="commercial law firm" className="h-[55px] sm:h-[55px] w-auto" loading="lazy" decoding="async" />
                 </div>
               </div>
-              <p className="text-xs sm:text-sm text-gray-500 leading-relaxed mb-4">
+              <p className="text-xs sm:text-sm text-gray-500 leading-relaxed mb-4 pr-12">
                 A boutique law practice distinguished by its deep specialization in tax
                 advisory and dispute resolution across India.
               </p>
@@ -53,8 +53,8 @@ const Footer = () => {
             </div>
 
             {/* Practice Areas and Quick Links Grid */}
-            <div className="sm:col-span-2 lg:col-span-2">
-              <div className="grid grid-cols-2 gap-4 sm:gap-6">
+            <div className="sm:col-span-2 lg:col-span-2 ">
+              <div className="grid grid-cols-2 gap-4 sm:gap-6 justify-evenly">
                 {/* Practice Areas */}
                 <div>
                   <h4 className="font-semibold text-xs sm:text-sm mb-3 sm:mb-4 text-gray-700">Practice Areas</h4>

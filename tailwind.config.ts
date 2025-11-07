@@ -13,6 +13,12 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        'lora': ['Lora', 'serif'],
+        'merriweather': ['Merriweather Sans', 'sans-serif'],
+        'montserrat': ['Montserrat', 'sans-serif'],
+        'poppins': ['Poppins', 'sans-serif'],
+      },
       colors: {
         // Custom CLC colors
         'clc-blue': '#214813',
@@ -37,9 +43,16 @@ export default {
           light: "hsl(var(--secondary-light))",
         },
         sidebar: {
+          DEFAULT: "hsl(var(--sidebar-background))",
           bg: "hsl(var(--sidebar-bg))",
           foreground: "hsl(var(--sidebar-foreground))",
           hover: "hsl(var(--sidebar-hover))",
+          primary: "hsl(var(--sidebar-primary))",
+          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
+          accent: "hsl(var(--sidebar-accent))",
+          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
+          border: "hsl(var(--sidebar-border))",
+          ring: "hsl(var(--sidebar-ring))",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -60,16 +73,6 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
-        },
-        sidebar: {
-          DEFAULT: "hsl(var(--sidebar-background))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          primary: "hsl(var(--sidebar-primary))",
-          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-          accent: "hsl(var(--sidebar-accent))",
-          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-          border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
         },
       },
       borderRadius: {

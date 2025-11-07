@@ -100,7 +100,7 @@ export { teamMembers };
 const TeamMember = ({ member, variant = "card" }: TeamMemberProps) => {
   if (variant === "detailed") {
     return (
-      <div className="bg-white/95 backdrop-blur-sm p-8">
+      <div className="bg-white/95 backdrop-blur-sm p-6 sm:p-8">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8 mb-12">
@@ -110,23 +110,26 @@ const TeamMember = ({ member, variant = "card" }: TeamMemberProps) => {
                   src={member.image}
                   alt={member.name}
                   className="w-full h-full object-cover rounded-lg shadow-lg"
+                  onError={(e) => {
+                    e.currentTarget.src = 'https://via.placeholder.com/192x192?text=' + member.name;
+                  }}
                 />
               ) : (
-                <div className="w-full h-full bg-gray-200 rounded-lg flex items-center justify-center">
+                <div className="w-full h-full bg-gray-100 rounded-lg flex items-center justify-center">
                   <User className="w-24 h-24 text-gray-400" />
                 </div>
               )}
             </div>
             <div className="flex-1 text-center md:text-left">
-              <h1 className="text-3xl font-light text-gray-800 mb-2">{member.name}</h1>
-              <p className="text-primary font-medium mb-4">{member.title}</p>
+              <h1 className="font-montserrat font-bold text-[32px] leading-[40px] text-gray-800 mb-2">{member.name}</h1>
+              <p className="text-[#636AE8] font-medium text-[18px] mb-4">{member.title}</p>
               <div className="flex flex-wrap gap-4 text-sm text-gray-600 mb-6">
                 <span className="flex items-center">
-                  <Briefcase className="w-4 h-4 mr-2" />
+                  <Briefcase className="w-4 h-4 mr-2" style={{ color: "#636AE8" }} />
                   {member.experience}
                 </span>
                 <span className="flex items-center">
-                  <MapPin className="w-4 h-4 mr-2" />
+                  <MapPin className="w-4 h-4 mr-2" style={{ color: "#636AE8" }} />
                   {member.location}
                 </span>
               </div>
@@ -134,7 +137,7 @@ const TeamMember = ({ member, variant = "card" }: TeamMemberProps) => {
                 {member.expertise.slice(0, 3).map((skill, index) => (
                   <span
                     key={index}
-                    className="bg-primary/10 text-primary text-sm px-3 py-1 rounded-full"
+                    className="bg-gray-100 text-gray-700 text-sm px-3 py-1 rounded-full"
                   >
                     {skill}
                   </span>
@@ -147,10 +150,10 @@ const TeamMember = ({ member, variant = "card" }: TeamMemberProps) => {
           <div className="space-y-8">
             {/* About */}
             <section>
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">About</h2>
+              <h2 className="font-montserrat font-bold text-[24px] text-gray-800 mb-4">About</h2>
               <div className="space-y-4">
                 {member.fullDescription.map((paragraph, index) => (
-                  <p key={index} className="text-gray-600 leading-relaxed">
+                  <p key={index} className="text-gray-600 text-[16px] leading-relaxed">
                     {paragraph}
                   </p>
                 ))}
@@ -159,15 +162,15 @@ const TeamMember = ({ member, variant = "card" }: TeamMemberProps) => {
 
             {/* Expertise */}
             <section>
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">Areas of Expertise</h2>
+              <h2 className="font-montserrat font-bold text-[24px] text-gray-800 mb-4">Areas of Expertise</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {member.expertise.map((skill, index) => (
                   <div
                     key={index}
                     className="flex items-center bg-gray-50 rounded-lg p-3 border border-gray-200"
                   >
-                    <Award className="w-5 h-5 text-primary mr-3" />
-                    <span className="text-gray-700">{skill}</span>
+                    <Award className="w-5 h-5 mr-3" style={{ color: "#636AE8" }} />
+                    <span className="text-gray-700 text-[15px]">{skill}</span>
                   </div>
                 ))}
               </div>
@@ -175,15 +178,15 @@ const TeamMember = ({ member, variant = "card" }: TeamMemberProps) => {
 
             {/* Education */}
             <section>
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">Education & Qualifications</h2>
+              <h2 className="font-montserrat font-bold text-[24px] text-gray-800 mb-4">Education & Qualifications</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {member.education.map((edu, index) => (
                   <div
                     key={index}
                     className="flex items-center bg-gray-50 rounded-lg p-3 border border-gray-200"
                   >
-                    <GraduationCap className="w-5 h-5 text-primary mr-3" />
-                    <span className="text-gray-700">{edu}</span>
+                    <GraduationCap className="w-5 h-5 mr-3" style={{ color: "#636AE8" }} />
+                    <span className="text-gray-700 text-[15px]">{edu}</span>
                   </div>
                 ))}
               </div>
@@ -195,43 +198,49 @@ const TeamMember = ({ member, variant = "card" }: TeamMemberProps) => {
   }
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-shadow flex flex-col h-full">
+    <div className="bg-white border border-gray-200 hover:shadow-md transition-shadow flex flex-col h-full"
+      style={{ borderRadius: "16px", padding: "22px 24px", opacity: 1 }}>
       <div className="text-center mb-4">
         {member.image ? (
           <img
             src={member.image}
             alt={member.name}
-            className="w-28 h-28 rounded-full mx-auto mb-3 object-cover border-2 border-gray-100"
+            className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
+            loading="lazy"
+            decoding="async"
+            onError={(e) => {
+              e.currentTarget.src = 'https://via.placeholder.com/128x128?text=' + member.name;
+            }}
           />
         ) : (
-          <div className="w-28 h-28 mx-auto bg-gray-200 rounded-full flex items-center justify-center mb-3">
-            <User className="w-14 h-14 text-gray-400" />
+          <div className="w-32 h-32 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-4">
+            <User className="w-16 h-16 text-gray-400" />
           </div>
         )}
-        <h3 className="text-lg font-semibold text-gray-800 mb-1 whitespace-nowrap">{member.name}</h3>
-        <p className="text-primary font-medium mb-2">{member.title}</p>
-        <div className="flex justify-center gap-3 text-sm text-gray-600 mb-3">
+        <h3 className="font-montserrat font-bold text-[20px] text-gray-800 mb-1">{member.name}</h3>
+        <p className="text-[#636AE8] font-medium text-[16px] mb-3">{member.title}</p>
+        <div className="flex justify-center gap-4 text-sm text-gray-600 mb-3">
           <span className="flex items-center">
-            <Briefcase className="w-4 h-4 mr-1" />
+            <Briefcase className="w-4 h-4 mr-1" style={{ color: "#636AE8" }} />
             {member.experience}
           </span>
           <span className="flex items-center">
-            <MapPin className="w-4 h-4 mr-1" />
+            <MapPin className="w-4 h-4 mr-1" style={{ color: "#636AE8" }} />
             {member.location}
           </span>
         </div>
       </div>
       
       <div className="flex-grow flex flex-col">
-        <p className="text-gray-600 text-sm leading-relaxed mb-4 flex-grow">
+        <p className="text-gray-600 text-[15px] leading-relaxed mb-4 flex-grow text-center">
           {member.shortDescription}
         </p>
 
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="flex flex-wrap justify-center gap-2 mb-4">
           {member.expertise.slice(0, 3).map((skill, index) => (
             <span
               key={index}
-              className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full"
+              className="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full"
             >
               {skill}
             </span>
@@ -240,13 +249,13 @@ const TeamMember = ({ member, variant = "card" }: TeamMemberProps) => {
 
         <Dialog>
           <DialogTrigger asChild>
-            <Button className="w-full bg-primary hover:bg-primary-dark text-white mt-auto">
+            <Button className="w-full bg-[#779E5A] hover:bg-[#6a8d4f] text-white mt-auto">
               View Profile
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
-              <DialogTitle className="text-2xl font-light">Team Member Profile</DialogTitle>
+              <DialogTitle className="font-montserrat font-bold text-[28px] text-gray-800">Team Member Profile</DialogTitle>
               <DialogDescription>
                 <TeamMember member={member} variant="detailed" />
               </DialogDescription>

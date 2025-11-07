@@ -78,7 +78,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      <div className="max-w-7xl bg-slate-900/40 mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-4">
         <Header />
         
         {/* Mobile Sidebar Toggle Button */}
@@ -125,7 +125,7 @@ const Index = () => {
           </div>
           
           {/* Right Sidebar - Desktop only */}
-          <div className="hidden lg:block lg:w-60 xl:w-64">
+          <div className="hidden lg:block lg:w-72 xl:w-80">
             <RightSidebar />
           </div>
         </div>

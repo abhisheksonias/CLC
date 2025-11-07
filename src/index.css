@@ -123,12 +123,8 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: "Times New Roman", Times, serif;
-    background-image: url('/bg.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    font-family: 'Lora', 'Times New Roman', Times, serif;
+    /* Removed global background image for clean full-width layout */
   }
 }
 
@@ -147,6 +143,10 @@
 /* Poppins font utility class */
 .poppins {
   font-family: 'Poppins', sans-serif;
+}
+
+.font-Lora {
+  font-family: 'Lora', serif;
 }
 
 /* Poppins font for sidebars, excluding p tags */
