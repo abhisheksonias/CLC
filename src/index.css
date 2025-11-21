@@ -122,9 +122,12 @@
   }
 
   body {
-    @apply bg-background text-foreground;
-    font-family: 'Lora', 'Times New Roman', Times, serif;
-    /* Removed global background image for clean full-width layout */
+    @apply bg-background text-foreground font-sans;
+    background-image: url('/bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 }
 
@@ -140,33 +143,29 @@
   display: none;
 }
 
-/* Poppins font utility class */
+/* League Spartan font utility class - for backward compatibility */
 .poppins {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'League Spartan', sans-serif;
 }
 
-.font-Lora {
-  font-family: 'Lora', serif;
-}
-
-/* Poppins font for sidebars, excluding p tags */
+/* League Spartan font for sidebars */
 .sidebar-poppins {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'League Spartan', sans-serif;
 }
 
 .sidebar-poppins p {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'League Spartan', sans-serif;
 }
 
 /* Specific sidebar selectors */
 .left-sidebar,
 .right-sidebar {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'League Spartan', sans-serif;
 }
 
 .left-sidebar p,
 .right-sidebar p {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'League Spartan', sans-serif;
 }
 
 /* Custom Animations for Hero Section */

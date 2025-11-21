@@ -1,8 +1,8 @@
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Download, Eye, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useNewsUpdates } from "@/hooks/useSanityData";
+import { urlFor } from "@/lib/sanity";
 import { format } from "date-fns";
 import { useState } from "react";
 
@@ -29,142 +29,165 @@ const NewsUpdates = () => {
   };
 
   return (
-    <div className="flex-1 bg-white/95 backdrop-blur-sm">
-      {/* Hero Section */}
-      <section className="relative p-4 sm:p-6 md:p-8 overflow-hidden">
-        <div className="relative z-10">
-          <div className="max-w-5xl mx-auto bg-[#779E5A] text-white rounded-xl p-6 sm:p-8 md:p-10 shadow-md">
-            <h1 className="font-lora text-[48px] leading-[60px] font-bold mb-4 text-white">
+    <div className="flex-1 bg-white">
+      {/* Header Section */}
+      <section className="p-6 sm:p-8 md:p-12 border-b border-gray-200">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-8">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl poppins font-bold text-[#163C0F] mb-3">
               News & Updates
             </h1>
-            <p className="text-white/90 text-sm sm:text-base md:text-lg mb-6 max-w-3xl">
-              Stay informed with our latest case updates, news, and publications from Commercial Law Chambers.
+            <p className="text-base sm:text-lg text-gray-600">
+              Stay informed with our latest case updates, news, and publications 
+              from Commercial Law Chambers.
             </p>
+          </div>
+
+          {/* Type Filter */}
+          <div className="flex flex-wrap justify-center gap-2">
+            {typeList.map((type) => (
+              <button
+                key={type}
+                onClick={() => setSelectedType(type)}
+                className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${
+                  type === selectedType
+                    ? "bg-[#163C0F] text-white"
+                    : "bg-gray-50 text-gray-700 border border-gray-200 hover:border-[#163C0F] hover:text-[#163C0F]"
+                }`}
+              >
+                {getTypeDisplayName(type)}
+              </button>
+            ))}
           </div>
         </div>
       </section>
 
-      <section id="news-updates" className="p-4 sm:p-6 md:p-8">
-        <div className="mb-6">
-          <h2 className="font-montserrat font-bold text-[36px] leading-[40px] tracking-[0px] text-gray-800 mb-3">Latest Updates</h2>
-        </div>
-
-        {/* Type Filter */}
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
-          {typeList.map((type) => (
-            <Button
-              key={type}
-              variant={type === selectedType ? "default" : "outline"}
-              size="sm"
-              className={`mb-2 ${type === selectedType ? 'bg-[#779E5A] hover:bg-[#6a8d4f]' : ''}`}
-              onClick={() => setSelectedType(type)}
-            >
-              {getTypeDisplayName(type)}
-            </Button>
-          ))}
-        </div>
-
-        {/* Loading State */}
-        {isLoading && (
-          <div className="grid lg:grid-cols-2 gap-[17px] mb-12">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="bg-white border border-gray-200 rounded-2xl shadow-md"
-                style={{ borderRadius: "16px", padding: "22px 24px", opacity: 1 }}>
-                <div className="animate-pulse">
-                  <div className="h-4 bg-gray-300 rounded w-1/4 mb-4"></div>
-                  <div className="h-6 bg-gray-300 rounded mb-4"></div>
-                  <div className="space-y-3">
-                    <div className="h-4 bg-gray-300 rounded"></div>
-                    <div className="h-4 bg-gray-300 rounded w-5/6"></div>
-                    <div className="h-4 bg-gray-300 rounded w-4/6"></div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* News Grid */}
-        {!isLoading && (
-          <div className="grid lg:grid-cols-2 gap-[17px] mb-12">
-            {filteredNews.map((news) => (
-              <div key={news._id} className="bg-white border border-gray-200 hover:shadow-md transition-all duration-300 flex flex-col h-full"
-                style={{ borderRadius: "16px", padding: "22px 24px", opacity: 1 }}>
-                <div>
-                  <div className="flex items-start justify-between mb-4">
-                    <Badge variant="outline" className="text-xs" style={{ color: "#636AE8", borderColor: "#636AE8" }}>
-                      {getTypeDisplayName(news.type)}
-                    </Badge>
-                    {news.isNew && (
-                      <Badge variant="secondary" className="text-xs bg-gray-100 text-gray-700">
-                        New
-                      </Badge>
-                    )}
-                  </div>
-                  <h3 className="font-montserrat font-bold text-[24px] leading-tight text-gray-800 hover:text-[#636AE8] transition-colors mb-4">
-                    <Link to={`/news/${news.slug.current}`} className="cursor-pointer">
-                      {news.title}
-                    </Link>
-                  </h3>
-                </div>
-                
-                <div className="flex flex-col flex-grow">
-                  <p className="text-gray-600 text-[16px] leading-relaxed mb-6 flex-grow">
-                    {news.excerpt}
-                  </p>
-                  
-                  <div className="flex items-center justify-between text-sm text-gray-600 mb-6">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="h-4 w-4" style={{ color: "#636AE8" }} />
-                      <span>{format(new Date(news.publishedAt), 'MMMM d, yyyy')}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Eye className="h-4 w-4" style={{ color: "#636AE8" }} />
-                      <span>{news.readTime}</span>
+      {/* News Grid Section */}
+      <section className="p-6 sm:p-8 md:p-12 border-b border-gray-200">
+        <div className="max-w-6xl mx-auto">
+          {/* Loading State */}
+          {isLoading && (
+            <div className="grid lg:grid-cols-2 gap-6">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                  <div className="animate-pulse">
+                    <div className="h-4 bg-gray-300 rounded w-1/4 mb-4"></div>
+                    <div className="h-6 bg-gray-300 rounded mb-4"></div>
+                    <div className="h-48 bg-gray-300 rounded-lg mb-4"></div>
+                    <div className="space-y-3">
+                      <div className="h-4 bg-gray-300 rounded w-1/3"></div>
+                      <div className="h-4 bg-gray-300 rounded w-1/4"></div>
                     </div>
                   </div>
-                  
-                  <div className="flex gap-3 mt-auto">
-                    <Link to={`/news/${news.slug.current}`} className="flex-1">
-                      <Button variant="outline" size="sm" className="w-full hover:bg-[#636AE8] hover:text-white hover:border-[#636AE8]">
-                        <Eye className="mr-2 h-4 w-4" />
-                        Read More
-                      </Button>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* News Grid */}
+          {!isLoading && (
+            <div className="grid lg:grid-cols-2 gap-6">
+              {filteredNews.map((news) => (
+                <div key={news._id} className="bg-white border border-gray-200 rounded-lg p-6 hover:border-[#163C0F] transition-all flex flex-col h-full">
+                  <div className="mb-4">
+                    <div className="flex items-start justify-between mb-3">
+                      <span className="bg-[#B3C7AB] text-[#163C0F] text-xs font-medium px-3 py-1 rounded-full">
+                        {getTypeDisplayName(news.type)}
+                      </span>
+                      {news.isNew && (
+                        <span className="bg-[#163C0F] text-white text-xs font-medium px-3 py-1 rounded-full">
+                          New
+                        </span>
+                      )}
+                    </div>
+                    <Link to={`/news/${news.slug.current}`} className="cursor-pointer group">
+                      <h3 className="text-lg font-bold text-[#163C0F] leading-tight mb-3 group-hover:text-[#1a4a1a] transition-colors">
+                        {news.title}
+                      </h3>
                     </Link>
-                    {news.downloadUrl ? (
-                      <Button variant="outline" size="sm" asChild className="hover:bg-[#636AE8] hover:text-white hover:border-[#636AE8]">
-                        <a href={news.downloadUrl} target="_blank" rel="noopener noreferrer">
-                          <Download className="h-4 w-4" />
-                        </a>
-                      </Button>
-                    ) : (
-                      <div className="w-10"></div>
+                  </div>
+                  
+                  <div className="flex flex-col flex-grow">
+                    {/* Featured Image */}
+                    {news.featuredImage && (
+                      <Link to={`/news/${news.slug.current}`} className="mb-4 block">
+                        <img
+                          src={urlFor(news.featuredImage).width(600).height(300).fit('crop').url()}
+                          alt={news.featuredImage.alt || news.title}
+                          className="w-full h-auto object-cover rounded-lg border border-gray-200 hover:border-[#163C0F] transition-all"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </Link>
                     )}
+                    
+                    <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
+                      <div className="flex items-center gap-2">
+                        <Calendar className="h-4 w-4" />
+                        <span>{format(new Date(news.publishedAt), 'MMMM d, yyyy')}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Eye className="h-4 w-4" />
+                        <span>{news.readTime}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex gap-3 mt-auto">
+                      <Link to={`/news/${news.slug.current}`} className="flex-1">
+                        <Button size="sm" className="w-full bg-[#163C0F] hover:bg-[#1a4a1a] text-white">
+                          <Eye className="mr-2 h-4 w-4" />
+                          Read More
+                        </Button>
+                      </Link>
+                      {news.downloadUrl && (
+                        <Button 
+                          size="sm" 
+                          variant="outline"
+                          className="border-[#163C0F] text-[#163C0F] hover:bg-[#163C0F] hover:text-white"
+                          asChild
+                        >
+                          <a href={news.downloadUrl} target="_blank" rel="noopener noreferrer">
+                            <Download className="h-4 w-4" />
+                          </a>
+                        </Button>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        )}
+              ))}
+            </div>
+          )}
 
-        {/* Newsletter Section */}
-        <div className="bg-gray-200 border border-gray-200 rounded-lg p-8 sm:p-12 text-center">
-          <h3 className="font-montserrat font-bold text-[30px] leading-[36px] text-gray-800 mb-4">
-            Stay Updated with Legal Developments
-          </h3>
-          <p className="text-gray-600 text-[16px] mb-6 max-w-2xl mx-auto">
-            Subscribe to our newsletter to receive the latest case updates, news, and regulatory changes directly in your inbox.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Enter your email address"
-              className="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#636AE8]"
-            />
-            <Button className="whitespace-nowrap bg-[#779E5A] hover:bg-[#6a8d4f] text-white">
-              Subscribe
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+          {!isLoading && filteredNews.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-gray-600">No news updates found in this category.</p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Newsletter Section */}
+      <section className="p-6 sm:p-8 md:p-12 border-b border-gray-200 bg-gray-50">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-white border border-[#163C0F] rounded-lg p-6 sm:p-8 text-center">
+            <h3 className="text-xl sm:text-2xl font-bold poppins text-[#163C0F] mb-4">
+              Stay Updated with Legal Developments
+            </h3>
+            <p className="text-sm sm:text-base text-gray-600 mb-6 max-w-2xl mx-auto">
+              Subscribe to our newsletter to receive the latest case updates, 
+              news, and regulatory changes directly in your inbox.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <input
+                type="email"
+                placeholder="Enter your email address"
+                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#163C0F] focus:border-[#163C0F]"
+              />
+              <Button className="whitespace-nowrap bg-[#163C0F] hover:bg-[#1a4a1a] text-white">
+                Subscribe
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
           </div>
         </div>
       </section>

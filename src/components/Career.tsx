@@ -29,30 +29,32 @@ const Career = () => {
   ];
 
   return (
-    <div className="flex-1 bg-white/95 backdrop-blur-sm">
+    <div className="flex-1 bg-white">
       {/* Career Header Section */}
-      <section className="p-8 mb-8">
-        <div className="text-center mb-8">
-          <h1 className="text-2xl lg:text-3xl poppins  font-bold text-gray-800 mb-4">
-            Career Opportunities
-          </h1>
-          <p className="text-xl text-gray-600 mb-6">
-            Join Our Team of Legal Excellence
-          </p>
-        </div>
+      <section className="p-6 sm:p-8 md:p-12 border-b border-gray-200">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-8">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl poppins font-bold text-[#163C0F] mb-3">
+              Career Opportunities
+            </h1>
+            <p className="text-base sm:text-lg text-gray-600">
+              Join Our Team of Legal Excellence
+            </p>
+          </div>
 
-        {/* Introduction */}
-        <div className="bg-gray-200 border border-gray-200 rounded-lg p-4 sm:p-6 mb-8">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-gray-600 text-[16px] leading-relaxed mb-4">
-              At Commercial Law Chamber, we are always looking for talented professionals who share our 
-              commitment to excellence and client service. We offer a dynamic work environment where you 
-              can grow your career while working on challenging and meaningful cases.
-            </p>
-            <p className="text-gray-600 text-[16px] leading-relaxed">
-              Our firm provides opportunities for both experienced lawyers and fresh graduates who demonstrate 
-              exceptional potential and a passion for tax and commercial law.
-            </p>
+          {/* Introduction */}
+          <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+            <div className="max-w-3xl mx-auto">
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-4">
+                At Commercial Law Chamber, we are always looking for talented professionals who share our 
+                commitment to excellence and client service. We offer a dynamic work environment where you 
+                can grow your career while working on challenging and meaningful cases.
+              </p>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                Our firm provides opportunities for both experienced lawyers and fresh graduates who demonstrate 
+                exceptional potential and a passion for tax and commercial law.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -112,27 +114,28 @@ const Career = () => {
       </section> */}
 
       {/* Why Join Us Section */}
-      <section className="p-4 sm:p-6 md:p-8 mb-6 sm:mb-8 border-t border-gray-200">
-        <div className="mb-6">
-          <h2 className="font-montserrat font-bold text-[36px] leading-[40px] tracking-[0px] text-gray-800 mb-2">Why Join Us</h2>
-          <p className="text-base text-gray-600">Benefits of building your career with CLC</p>
-        </div>
+      <section className="p-6 sm:p-8 md:p-12 border-b border-gray-200 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold poppins text-[#163C0F] mb-3">Why Join Us</h2>
+            <p className="text-base sm:text-lg text-gray-600">Benefits of building your career with CLC</p>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[17px]">
-          {whyJoinUs.map((benefit, index) => (
-            <div key={index} className="bg-white border border-gray-200 hover:shadow-md transition-shadow flex flex-col"
-              style={{ borderRadius: "16px", padding: "22px 24px", opacity: 1 }}>
-              <div className="flex flex-col h-full">
-                <div className="flex justify-center mb-3">
-                  <div className="bg-gray-100 rounded-full p-3 inline-block">
-                    <benefit.icon className="h-8 w-8" style={{ color: "#636AE8" }} />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {whyJoinUs.map((benefit, index) => (
+              <div key={index} className="bg-white rounded-lg p-4 border border-gray-200 hover:border-[#163C0F] transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="bg-[#B3C7AB] rounded-lg p-3 flex-shrink-0">
+                    <benefit.icon className="h-6 w-6 text-[#163C0F]" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-[#163C0F] mb-2 text-base">{benefit.title}</h3>
+                    <p className="text-sm text-gray-600 leading-relaxed">{benefit.description}</p>
                   </div>
                 </div>
-                <h3 className="font-semibold font-montserrat text-gray-800 text-[20px] text-center mb-2">{benefit.title}</h3>
-                <p className="text-[16px] text-gray-600 leading-relaxed text-center flex-grow">{benefit.description}</p>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 

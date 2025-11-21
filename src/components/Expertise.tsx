@@ -1,4 +1,4 @@
-import { Calculator, Building, FileText, Pointer, BatteryFullIcon, Dot, Circle } from "lucide-react";
+import { Calculator, Building, Globe, FileText, ArrowRight } from "lucide-react";
 
 const Expertise = () => {
   const practiceAreas = [
@@ -45,54 +45,55 @@ const Expertise = () => {
   ];
 
   return (
-    <div className="flex-1 bg-white/95 backdrop-blur-sm">
-      {/* Hero Section */}
-      <section className="relative p-4 sm:p-6 md:p-8 overflow-hidden">
-        <div className="relative z-10">
-          <div className="max-w-5xl mx-auto bg-gray-100 text-black rounded-xl p-3 sm:p-6 md:p-8 shadow-md">
-            <h1 className="font-lora text-[48px] leading-[60px] font-bold mb-4 text-black">
+    <div className="flex-1 bg-white">
+      {/* Header Section */}
+      <section className="p-6 sm:p-8 md:p-12 border-b border-gray-200">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-8">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl poppins font-bold text-[#163C0F] mb-3">
               Comprehensive Legal Solutions
             </h1>
-            <p className="text-black/90 text-sm sm:text-base md:text-lg mb-2 max-w-3xl">
-              Research-intensive, solution-driven approach tailored to align with both legal and business objectives.
+            <p className="text-base sm:text-lg text-gray-600">
+              Research-intensive, solution-driven approach tailored to align with 
+              both legal and business objectives.
             </p>
           </div>
         </div>
       </section>
 
-      <section id="expertise" className="p-4 sm:p-6 md:p-8">
-        <div className="mb-6">
-          <h2 className="font-montserrat font-bold text-[36px] leading-[40px] tracking-[0px] text-gray-800">Our Practice Areas</h2>
-        </div>
-
-        {/* Practice Areas */}
-        <div className="space-y-8">
-          {practiceAreas.map((area, index) => (
-            <div key={index} className="bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-lg transition-shadow">
-              <div className="p-6 sm:p-8">
+      {/* Practice Areas */}
+      <div className="space-y-6 sm:space-y-8">
+        {practiceAreas.map((area, index) => (
+          <section key={index} className={`p-6 sm:p-8 md:p-12 ${index < practiceAreas.length - 1 ? 'border-b border-gray-200' : ''}`}>
+            <div className="max-w-6xl mx-auto">
+              <div className="bg-white border border-gray-200 rounded-lg p-6 sm:p-8 hover:border-[#163C0F] transition-all">
+                {/* Header */}
                 <div className="flex items-start gap-4 mb-6">
-                  <div className="bg-gray-100 rounded-full p-3">
-                    <area.icon className="h-8 w-8" style={{ color: "#636AE8" }} />
+                  <div className="bg-[#B3C7AB] rounded-lg p-3 flex-shrink-0">
+                    <area.icon className="h-8 w-8 text-[#163C0F]" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-montserrat font-bold text-[24px] leading-[36px] text-gray-800 ">{area.title}</h3>
-                    <p className="text-[16px] font-medium text-gray-600">{area.subtitle}</p>
+                    <h2 className="text-xl sm:text-2xl font-bold poppins text-[#163C0F] mb-2">{area.title}</h2>
+                    <p className="text-base sm:text-lg font-medium text-gray-600">{area.subtitle}</p>
                   </div>
                 </div>
-              
-                <div className="grid lg:grid-cols-2 gap-8">
+
+                {/* Content Grid */}
+                <div className="grid lg:grid-cols-2 gap-6 sm:gap-8">
                   {/* Description and Highlights */}
                   <div>
-                    <p className="text-[16px] text-gray-700 leading-relaxed mb-6">
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-6">
                       {area.description}
                     </p>
                     
-                    <h4 className="font-montserrat font-semibold text-[20px] text-gray-800 mb-4">Key Service Areas:</h4>
-                    <ul className="space-y-2">
+                    <h3 className="font-semibold text-[#163C0F] mb-4 text-base sm:text-lg">Key Service Areas:</h3>
+                    <ul className="space-y-3">
                       {area.highlights.map((highlight, i) => (
-                        <li key={i} className="flex items-start gap-2">
-                          <div className="w-2 h-2 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#636AE8" }}></div>
-                          <span className="text-[15px] text-gray-600">{highlight}</span>
+                        <li key={i} className="flex items-start gap-3">
+                          <div className="bg-[#B3C7AB] rounded-full p-1 mt-1 flex-shrink-0">
+                            <div className="w-1.5 h-1.5 bg-[#163C0F] rounded-full"></div>
+                          </div>
+                          <span className="text-sm text-gray-700 leading-relaxed">{highlight}</span>
                         </li>
                       ))}
                     </ul>
@@ -100,29 +101,22 @@ const Expertise = () => {
 
                   {/* Experience */}
                   <div>
-                    <h4 className="font-montserrat font-semibold text-[20px] text-gray-800 mb-4">Select Experience:</h4>
-                    <div className="space-y-4">
+                    <h3 className="font-semibold text-[#163C0F] mb-4 text-base sm:text-lg">Select Experience:</h3>
+                    <div className="space-y-3">
                       {area.experience.map((exp, i) => (
-                        <div key={i} className="flex items-start gap-3 p-4 bg-[#F9FAFB] rounded-lg border border-gray-200">
-                          <Circle className="h-4 w-4 justify-center mt-3 flex-shrink-0" style={{ color: "#636AE8" }} />
-                          <p className="text-[15px] text-gray-600">{exp}</p>
+                        <div key={i} className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                          <FileText className="h-5 w-5 text-[#163C0F] mt-0.5 flex-shrink-0" />
+                          <p className="text-sm text-gray-700 leading-relaxed">{exp}</p>
                         </div>
                       ))}
-                    </div>
-
-                    <div className="mt-6">
-                      {/* <Button variant="outline" className="w-full">
-                        Learn More About This Practice
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button> */}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          ))}
-        </div>
-      </section>
+          </section>
+        ))}
+      </div>
     </div>
   );
 };

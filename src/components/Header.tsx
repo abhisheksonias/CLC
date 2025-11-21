@@ -1,33 +1,79 @@
-import { MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const locations = [
-    "Mumbai", "New Delhi", "Banglore"];
+    "MUMBAI", "BENGALURU", "NEW DELHI"];
 
   return (
-    <header className="w-full bg-white/95 backdrop-blur">
-      <div className="w-full px-2 sm:px-4 py-2">
-        <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-          <div className="flex items-center">
-            <img src="/clc-logo.png" alt="commercial law firm" className="w-[178px] h-[35px] object-contain" loading="eager" fetchPriority="high" />
-          </div>
+    <header className="w-full">
+      {/* Top teal header */}
+      <div className="bg-white backdrop-blur-lg text-black">
+        <div className="max-w-full mx-auto px-2 sm:px-4 py-3">
+          <div className="flex justify-between items-center">
+            <div className="px-2 sm:px-4 md:px-10 flex items-center">
+              <Link to="/">
+                <img src="/clc-logo.png" alt="Commercial Law Chamber - Leading Tax & Commercial Disputes Law Firm" className="h-8 sm:h-12 md:h-16 lg:h-12 w-auto" loading="eager" fetchPriority="high" />
+              </Link>
+          
+            </div>
 
-          <div className="w-full font-Lora sm:flex sm:justify-left sm:pl-[78px]">
-            <div className="flex items-center justify-center rounded-[8px] h-9 sm:h-[36px] border border-gray-200 gap-3 sm:gap-5 px-3 sm:px-5 py-1 shadow-sm w-full max-w-[848px] overflow-x-auto whitespace-nowrap">
-              <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0"> <path d="M8.625 5.57031C8.625 5.32154 8.69877 5.07836 8.83698 4.87151C8.97519 4.66466 9.17163 4.50345 9.40147 4.40825C9.6313 4.31304 9.88421 4.28814 10.1282 4.33667C10.3722 4.3852 10.5963 4.505 10.7722 4.6809C10.9481 4.85681 11.0679 5.08093 11.1165 5.32493C11.165 5.56892 11.1401 5.82182 11.0449 6.05166C10.9497 6.28149 10.7885 6.47793 10.5816 6.61615C10.3748 6.75436 10.1316 6.82812 9.88281 6.82812C9.54922 6.82812 9.22929 6.69561 8.9934 6.45972C8.75752 6.22383 8.625 5.9039 8.625 5.57031ZM4.3125 5.57031C4.3125 4.09297 4.89937 2.67614 5.94401 1.63151C6.98864 0.58687 8.40547 0 9.88281 0C11.3602 0 12.777 0.58687 13.8216 1.63151C14.8663 2.67614 15.4531 4.09297 15.4531 5.57031C15.4531 10.854 10.3671 13.8207 10.1523 13.9446C10.0704 13.992 9.97744 14.0169 9.88281 14.0169C9.78819 14.0169 9.69523 13.992 9.61328 13.9446C9.39855 13.8207 4.3125 10.854 4.3125 5.57031ZM5.39062 5.57031C5.39062 9.57016 8.87746 12.1729 9.88281 12.8396C10.8873 12.1729 14.375 9.57105 14.375 5.57031C14.375 4.37891 13.9017 3.2363 13.0593 2.39386C12.2168 1.55141 11.0742 1.07812 9.88281 1.07812C8.69141 1.07812 7.5488 1.55141 6.70636 2.39386C5.86391 3.2363 5.39062 4.37891 5.39062 5.57031ZM16.5384 11.8154C16.4715 11.7883 16.3999 11.7749 16.3277 11.7761C16.2556 11.7772 16.1844 11.7928 16.1184 11.822C16.0524 11.8512 15.9929 11.8933 15.9435 11.9459C15.894 11.9984 15.8557 12.0604 15.8307 12.1281C15.8056 12.1958 15.7944 12.2678 15.7978 12.3399C15.8011 12.412 15.8189 12.4827 15.85 12.5478C15.8812 12.6129 15.9251 12.671 15.9791 12.7188C16.0332 12.7667 16.0963 12.8031 16.1647 12.8261C17.7441 13.4092 18.6875 14.1899 18.6875 14.9141C18.6875 16.3587 15.0713 17.9688 9.88281 17.9688C4.69434 17.9688 1.07812 16.3587 1.07812 14.9141C1.07812 14.1899 2.02148 13.4092 3.60094 12.8261C3.66935 12.8031 3.73245 12.7667 3.78651 12.7188C3.84056 12.671 3.88446 12.6129 3.91561 12.5478C3.94677 12.4827 3.96453 12.412 3.96785 12.3399C3.97118 12.2678 3.96 12.1958 3.93497 12.1281C3.90994 12.0604 3.87158 11.9984 3.82215 11.9459C3.77273 11.8933 3.71325 11.8512 3.64724 11.822C3.58123 11.7928 3.51004 11.7772 3.43789 11.7761C3.36573 11.7749 3.29408 11.7883 3.22719 11.8154C1.14641 12.5835 0 13.6841 0 14.9141C0 16.1126 1.0943 17.1943 3.08254 17.958C4.90727 18.6605 7.32227 19.0469 9.88281 19.0469C12.4434 19.0469 14.8584 18.6605 16.6831 17.958C18.6713 17.1943 19.7656 16.1126 19.7656 14.9141C19.7656 13.6841 18.6192 12.5835 16.5384 11.8154Z" fill="black" /> </svg>
-              {locations.map((location, index) => (
-                <div key={location} className="flex items-center">
-                  <button className="text-xs sm:text-sm p-1 text-gray-700 hover:text-white rounded-[4px] hover:bg-[#779E5A] hover:text-white transition-colors">
-                    {location}
-                  </button>
-                  {index < locations.length - 1 && (
-                    <span className="mx-3 h-4 w-px bg-gray-300 hidden sm:inline-block" />
-                  )}
-                </div>
-              ))}
+            {/* Social Media Icons */}
+            <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4 px-2 sm:px-4 md:px-10">
+              {/* <a
+                href="https://www.instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-pink-600 transition-colors"
+                aria-label="Instagram"
+              >
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-7 md:h-7" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                </svg>
+              </a>
+
+              <a
+                href="https://www.youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-red-600 transition-colors"
+                aria-label="YouTube"
+              >
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-7 md:h-7" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
+              </a> */}
+
+              <a
+                href="https://www.linkedin.com/company/7953220/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#779E5A] hover:text-primary transition-colors"
+                aria-label="LinkedIn"
+              >
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-7 md:h-7" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+              </a>
             </div>
           </div>
+        </div>
+      </div>
 
+      {/* Location tabs */}
+      <div className="bg-[#163C0F]/80 border-b">
+        <div className="max-w-full mx-auto px-2 sm:px-4">
+          <div className="flex justify-center space-x-2 sm:space-x-4 md:space-x-8 py-2">
+            {locations.map((location) => (
+              <Link to="/contact">
+              <button
+                key={location}
+                className="text-xs sm:text-sm text-white hover:text-[#53771C] transition-colors py-1 px-1 sm:px-2"
+              >
+                {location}
+              </button>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </header>
