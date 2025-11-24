@@ -6,7 +6,7 @@ const Hero = () => {
   const practiceAreas = [
     {
       icon: Calculator,
-      title: "Direct Tax",
+      title: "Direct & Indirect Tax",
       description: "Comprehensive direct tax advisory and litigation services"
     },
     {
