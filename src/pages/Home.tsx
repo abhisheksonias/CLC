@@ -43,64 +43,35 @@ const Home = () => {
         <meta name="twitter:image" content="https://www.clclaw.in/clc-logo.png" />
         <link rel="canonical" href="https://www.clclaw.in/" />
         
-        {/* Structured Data for SEO */}
+        {/* Combined LegalService + LocalBusiness Schema */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "LegalService",
+            "@type": ["LegalService", "LocalBusiness"],
             "name": "Commercial Law Chamber",
             "description": "Boutique law practice specializing in tax advisory and dispute resolution",
             "url": "https://www.clclaw.in",
             "logo": "https://www.clclaw.in/clc-logo.png",
             "foundingDate": "2008",
+            "priceRange": "Consultation required",
+            "telephone": "+91-99999-20118",
             "address": {
               "@type": "PostalAddress",
+              "streetAddress": "A, 1 A2, Jangpura Rd, Block A, Jangpura Extension",
               "addressLocality": "New Delhi",
+              "addressRegion": "Delhi",
+              "postalCode": "110014",
               "addressCountry": "IN"
             },
-            "areaServed": {
-              "@type": "Country",
-              "name": "India"
-            },
-            "serviceType": [
-              "Tax Advisory",
-              "Commercial Disputes",
-              "GST Litigation",
-              "Regulatory Disputes",
-              "International Tax"
-            ],
+            "areaServed": { "@type": "Country", "name": "India" },
             "hasOfferCatalog": {
               "@type": "OfferCatalog",
               "name": "Legal Services",
               "itemListElement": [
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "Direct & Indirect Tax Advisory"
-                  }
-                },
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "Commercial Disputes Resolution"
-                  }
-                },
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "Regulatory Disputes"
-                  }
-                },
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "International Tax"
-                  }
-                }
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Direct & Indirect Tax Advisory" }},
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Commercial Disputes Resolution" }},
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Regulatory Disputes" }},
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "International Tax" }}
               ]
             }
           })}

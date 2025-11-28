@@ -64,14 +64,12 @@ const Header = () => {
         <div className="max-w-full mx-auto px-2 sm:px-4">
           <div className="flex justify-center space-x-2 sm:space-x-4 md:space-x-8 py-2">
             {locations.map((location) => (
-              <Link to="/contact">
-              <button
+              <span
                 key={location}
-                className="text-xs sm:text-sm text-white hover:text-[#53771C] transition-colors py-1 px-1 sm:px-2"
+                className="text-xs sm:text-sm text-white py-1 px-1 sm:px-2"
               >
                 {location}
-              </button>
-              </Link>
+              </span>
             ))}
           </div>
         </div>

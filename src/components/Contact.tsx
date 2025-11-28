@@ -65,11 +65,43 @@ const Contact = () => {
                   <div className="min-w-0 flex-1">
                     <h3 className="font-semibold text-[#163C0F] mb-2 text-base">{info.title}</h3>
                     <div className="space-y-1">
-                      {info.details.map((detail, i) => (
-                        <p key={i} className="text-sm text-gray-600 break-words">
-                          {detail}
-                        </p>
-                      ))}
+                      {info.details.map((detail, i) => {
+                        // Check if detail is a phone number
+                        const isPhone = /^\+?91[\s-]?\d{5}[\s-]?\d{5}$/.test(detail.replace(/\s/g, ''));
+                        // Check if detail is an email
+                        const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(detail);
+                        
+                        if (isPhone) {
+                          const phoneNumber = detail.replace(/\s|-/g, '');
+                          return (
+                            <p key={i} className="text-sm text-gray-600 break-words">
+                              <a 
+                                href={`tel:${phoneNumber}`}
+                                className="text-[#163C0F] hover:underline font-medium"
+                              >
+                                {detail}
+                              </a>
+                            </p>
+                          );
+                        } else if (isEmail) {
+                          return (
+                            <p key={i} className="text-sm text-gray-600 break-words">
+                              <a 
+                                href={`mailto:${detail}`}
+                                className="text-[#163C0F] hover:underline font-medium"
+                              >
+                                {detail}
+                              </a>
+                            </p>
+                          );
+                        } else {
+                          return (
+                            <p key={i} className="text-sm text-gray-600 break-words">
+                              {detail}
+                            </p>
+                          );
+                        }
+                      })}
                     </div>
                   </div>
                 </div>
