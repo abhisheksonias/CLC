@@ -5,7 +5,7 @@ const About = () => {
     { icon: Building2, label: "Founded", value: "2008" },
     { icon: Users, label: "Partners", value: "2" },
     { icon: Users, label: "Associates", value: "15+" },
-    { icon: Gavel, label: "States", value: "Capitals" },
+    { icon: Gavel, label: "All", value: "Capital States" },
   ];
 
 
