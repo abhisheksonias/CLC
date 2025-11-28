@@ -1,72 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-  
-  <!-- Home Page -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.clclaw.in/</loc>
-    <lastmod>2025-11-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  
-  <!-- About Page -->
   <url>
     <loc>https://www.clclaw.in/about</loc>
-    <lastmod>2025-11-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
-  
-  <!-- Practice Area Page -->
   <url>
     <loc>https://www.clclaw.in/practice-area</loc>
-    <lastmod>2025-11-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
-  
-  <!-- Our Team Page -->
   <url>
     <loc>https://www.clclaw.in/team</loc>
-    <lastmod>2025-11-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- Insights Page -->
   <url>
     <loc>https://www.clclaw.in/insights</loc>
-    <lastmod>2025-11-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  
-  <!-- News Page -->
   <url>
     <loc>https://www.clclaw.in/news</loc>
-    <lastmod>2025-11-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  
-  <!-- Contact Page -->
   <url>
     <loc>https://www.clclaw.in/contact</loc>
-    <lastmod>2025-11-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- Career Page -->
   <url>
     <loc>https://www.clclaw.in/career</loc>
-    <lastmod>2025-11-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
+  <url>
+    <loc>https://www.clclaw.in/blog/sebi-s-regime-for-market-abuse-insider-trading-and-algo-trading-controls-a-structural</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.clclaw.in/blog/most-common-gst-notices-in-delhi-and-how-to-respond-professionally</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.clclaw.in/blog/the-mandatory-character-of-form-drc-01a-prior-to-notice-u-s-74-1-of-the-cgst-act-2017</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.clclaw.in/blog/indias-gst-regtech-transition-2025-insights</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.clclaw.in/blog/delhi-high-court-grants-fresh-hearing-to-gst-defaulter-amidst-pending-sc-verdict-on-tax-validity</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.clclaw.in/blog/nclt-admits-insolvency-petition-for-default-in-operational-debt</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.clclaw.in/blog/interim-relief-granted-in-tds-prosecution-a-notable-decision-by-allahabad-high-court</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.clclaw.in/blog/ncdrc-holds-insurer-liable-for-own-oversight-in-fire-insurance-claim-a-k-rubber-vs-oriental</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
-
